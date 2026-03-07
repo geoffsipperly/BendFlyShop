@@ -1,0 +1,113 @@
+//
+//  PROD.xcconfig
+//  SkeenaSystem
+//
+//  Production environment configuration.
+//  DO NOT commit real production secrets. Use CI to inject real anon key.
+//
+
+// ──────────────────────────────────────────────
+// MARK: - Backend & Authentication
+// ──────────────────────────────────────────────
+
+SUPABASE_PROJECT_URL = https:/paxslufnrjjvvflgciir.supabase.co
+API_BASE_URL = paxslufnrjjvvflgciir.supabase.co
+SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBheHNsdWZucmpqdnZmbGdjaWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1ODk5MzIsImV4cCI6MjA3NzE2NTkzMn0.CZNFAiVtfHLW5y6zkV1DUPCGoL-gJnxpUx9wttlRGMI
+LOG_LEVEL = error
+
+// ──────────────────────────────────────────────
+// MARK: - Feature Flags
+// ──────────────────────────────────────────────
+
+FF_FLIGHT_INFO = true
+FF_MEET_STAFF = true
+FF_GEAR_CHECKLIST = true
+FF_MANAGE_LICENSES = true
+FF_SELF_ASSESSMENT = true
+FF_CATCH_CAROUSEL = true
+FF_THE_BUZZ = true
+FF_CATCH_MAP = true
+
+// ──────────────────────────────────────────────
+// MARK: - API Endpoints (Edge Functions)
+// ──────────────────────────────────────────────
+
+UPLOAD_CATCH_V3_URL = /functions/v1/upload-catch-reports-v3
+MANAGE_TRIP_URL = functions/v1/manage-trip
+DOWNLOAD_CATCH_URL = /functions/v1/download-catch-reports
+RIVER_CONDITIONS_URL = /functions/v1/river-conditions
+TACTICS_RECOMMENDATIONS_URL = /functions/v1/tactics-recommendations
+ANGLER_FORECAST_URL = /functions/v1/angler-forecast
+ANGLER_PROFILE_URL = /functions/v1/angler-profile
+ANGLER_CONTEXT_URL = /functions/v1/angler-context
+ANGLER_DETAILS_URL = /functions/v1/angler-details
+MY_PROFILE_URL = /functions/v1/my-profile
+PROFICIENCY_URL = /functions/v1/proficiency
+GEAR_URL = /functions/v1/gear
+CLASSIFIED_LICENSES_URL = /functions/v1/classified-licenses
+CATCH_STORY_URL = /functions/v1/catch-story
+NOTES_UPLOAD_URL = /functions/v1/notes
+TRIP_ROSTER_URL = /functions/v1/trip-roster
+OBSERVATIONS_URL = /functions/v1/observations
+
+// ──────────────────────────────────────────────
+// MARK: - Forum / Community Feed
+// ──────────────────────────────────────────────
+
+FORUM_BASE = /rest/v1
+FORUM_API_KEY = $(SUPABASE_ANON_KEY)
+BUZZ_CATEGORY_ID = d7f7900f-97b3-43a2-9c7e-03bab95b7002
+
+// ──────────────────────────────────────────────
+// MARK: - App Branding
+// ──────────────────────────────────────────────
+
+APP_DISPLAY_NAME = Epic Waters
+APP_LOGO_ASSET = AppLogo
+COMMUNITY = Epic Waters
+COMMUNITY_TAGLINE = Intelligent Conservation
+
+// ──────────────────────────────────────────────
+// MARK: - Location & Geography
+// ──────────────────────────────────────────────
+
+DEFAULT_RIVER = Bulkley
+LODGE_RIVERS = Copper Creek,Pallant Creek,Yakoun River,Tlell River,Mamin River
+FORECAST_LOCATION = Haida Gwaii
+FORECAST_NOTES = Only the Pallant and Yakoun have water meters in Haida Gwaii. Pallant and Copper use reflected readings from 08OB002, while Yakoun, Tlell, and Mamin use 08OA002.
+DEFAULT_MAP_LATITUDE = 53.25
+DEFAULT_MAP_LONGITUDE = -132.07
+
+// ──────────────────────────────────────────────
+// MARK: - Maps
+// ──────────────────────────────────────────────
+
+MAPBOX_ACCESS_TOKEN = pk.eyJ1IjoiZ3NpcHBlcmx5IiwiYSI6ImNtbGJldmFhNjBxNGozZm9sbnFrY3d1d2wifQ.L2P0GeJIGgBQ8BRTZjJXeg
+
+// ──────────────────────────────────────────────
+// MARK: - Splash Video
+// ──────────────────────────────────────────────
+
+// ALWAYS = every login | FIRST_LOGIN = first time only | SESSION = once per app launch
+SPLASH_VIDEO_FREQUENCY = ALWAYS
+SPLASH_VIDEO_MUTED = ON
+SPLASH_VIDEO_MAX_DURATION = 3.0
+
+// ──────────────────────────────────────────────
+// MARK: - Image Processing
+// ──────────────────────────────────────────────
+
+// JPEG compression quality (0.0–1.0)
+IMAGE_COMPRESSION_QUALITY = 0.85
+
+// ──────────────────────────────────────────────
+// MARK: - Fish Detection ML Calibration
+// ──────────────────────────────────────────────
+
+FISH_DETECT_MIN_CONFIDENCE = 0.08
+FISH_BOX_SCALE_FACTOR = 0.59
+FISH_PIXELS_PER_INCH = 11.7
+FISH_MIN_LENGTH_INCHES = 10.0
+FISH_MAX_LENGTH_INCHES = 47.0
+FISH_ESTIMATE_LOW_FACTOR = 0.93
+FISH_ESTIMATE_HIGH_FACTOR = 1.07
