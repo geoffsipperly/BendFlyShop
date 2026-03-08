@@ -22,7 +22,7 @@ struct GuideRegistrationView: View {
 
   // MARK: - Form fields
 
-  @State private var userType: AuthService.UserType = .angler
+  @State private var userType: AuthService.UserType = .guide
   @State private var selectedCommunity: Community = .bendFlyShop
 
   @State private var firstName: String = ""
@@ -193,8 +193,6 @@ struct GuideRegistrationView: View {
   private var registrationForm: some View {
     VStack(spacing: 10) {
       rolePicker
-      communityPickerRow
-      scanButtonIfNeeded
       nameFields
       anglerNumberFieldIfNeeded
       emailField
