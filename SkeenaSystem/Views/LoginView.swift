@@ -49,18 +49,6 @@ struct LoginView: View {
               .shadow(radius: 10)
               .padding(.bottom, 6)
 
-            Text(AppEnvironment.shared.communityName)
-              .font(.largeTitle)
-              .fontWeight(.bold)
-              .multilineTextAlignment(.center)
-              .padding(.horizontal)
-              .foregroundColor(.white)
-
-            Text(AppEnvironment.shared.communityTagline)
-              .font(.title3)
-              .fontWeight(.medium)
-              .foregroundColor(.gray)
-              .multilineTextAlignment(.center)
           }
           .padding(.bottom, 8)
 

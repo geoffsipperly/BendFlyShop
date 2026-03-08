@@ -65,8 +65,6 @@ struct MeetStaff: View {
             .clipShape(RoundedRectangle(cornerRadius: 24))
             .shadow(radius: 10)
             .padding(.bottom, 2)
-          Text(AppEnvironment.shared.communityName).font(.largeTitle).fontWeight(.bold).foregroundColor(.white)
-          Text(AppEnvironment.shared.communityTagline).font(.title3).fontWeight(.medium).foregroundColor(.gray)
         }
         .padding(.bottom, 10)
 

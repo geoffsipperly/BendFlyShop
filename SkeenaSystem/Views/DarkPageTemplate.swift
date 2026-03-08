@@ -171,18 +171,7 @@ struct AppHeader: View {
         .scaledToFit()
         .frame(width: 160, height: 160)
 
-      Text(AppEnvironment.shared.communityName)
-        .font(.largeTitle)
-        .fontWeight(.bold)
-        .foregroundColor(.white)
-        .padding(.top, -36)
-
       ZStack {
-        Text(AppEnvironment.shared.communityTagline)
-          .font(.title3)
-          .fontWeight(.medium)
-          .foregroundColor(.gray)
-
         if let onMapTapped {
           HStack {
             Spacer()

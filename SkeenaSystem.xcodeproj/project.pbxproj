@@ -468,7 +468,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SkeenaSystem/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Bend Fly Shop";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mad Thinker";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access allows adding a photo of the catch";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Used for streamlined login";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We use location to help identify where catches occur";
@@ -516,7 +516,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SkeenaSystem/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Bend Fly Shop";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mad Thinker";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access allows adding a photo of the catch";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Used for streamlined login";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We use location to help identify where catches occur";
@@ -763,7 +763,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SkeenaSystem/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Bend Fly Shop";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mad Thinker";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access allows adding a photo of the catch";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Used for streamlined login";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We use location to help identify where catches occur";
@@ -905,7 +905,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SkeenaSystem/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Bend Fly Shop";
+				INFOPLIST_KEY_CFBundleDisplayName = "Mad Thinker";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access allows adding a photo of the catch";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Used for streamlined login";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We use location to help identify where catches occur";

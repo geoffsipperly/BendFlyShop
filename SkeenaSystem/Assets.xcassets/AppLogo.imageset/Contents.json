@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "FSE3.png",
+      "filename" : "IMG_2263.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "FSE3 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "FSE3 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
