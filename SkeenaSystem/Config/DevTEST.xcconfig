@@ -80,7 +80,7 @@ COMMUNITY_TAGLINE = Your Fly Fishing Destination
 DEFAULT_RIVER = Nehalem
 LODGE_RIVERS = Nehalem River,Wilson River,Trask River,Nestucca River,Kilchis River
 FORECAST_LOCATION = Oregon Coast
-FORECAST_NOTES = Data sourced from USGS. Kilchis River data is approximated from the Wilson River station due to the absence of a dedicated gauge.
+FORECAST_NOTES = River data sourced from USGS (no active gauge for the Kilchis River). Tide data provided by NOAAs CO-OPS Tides & Currents API, station 9437540 (Garibaldi, OR).
 DEFAULT_MAP_LATITUDE = 45.4562
 DEFAULT_MAP_LONGITUDE = -123.8426
 
