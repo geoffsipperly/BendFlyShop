@@ -43,7 +43,7 @@ struct RiverConditionsResponse: Decodable {
 
   struct WaterLevelEntry: Decodable, Identifiable {
     let date: String
-    let levelM: Double
+    let levelFt: Double
     var id: String { date }
   }
 
@@ -267,12 +267,12 @@ struct FishingForecastResultView: View {
 
       HStack {
         if let first = result.waterLevels.first {
-          Text("\(formattedDate(first.date)) • \(number(first.levelM)) m")
+          Text("\(formattedDate(first.date)) • \(number(first.levelFt)) ft")
             .font(.caption2).foregroundColor(.gray)
         }
         Spacer()
         if let last = result.waterLevels.last {
-          Text("\(formattedDate(last.date)) • \(number(last.levelM)) m")
+          Text("\(formattedDate(last.date)) • \(number(last.levelFt)) ft")
             .font(.caption2).foregroundColor(.white)
         }
       }
@@ -594,7 +594,7 @@ private struct WaterLevelSparkline: View {
 
   private var normalizedPoints: [CGPoint] {
     guard !levels.isEmpty else { return [] }
-    let ys = levels.map(\.levelM)
+    let ys = levels.map(\.levelFt)
     guard let minY = ys.min(), let maxY = ys.max(), maxY > minY else {
       return levels.indices.map {
         CGPoint(x: CGFloat($0) / CGFloat(max(1, levels.count - 1)), y: 0.5)

@@ -19,10 +19,10 @@ BETA_RELEASE = true
 // MARK: - Feature Flags
 // ──────────────────────────────────────────────
 
-FF_FLIGHT_INFO = true
+FF_FLIGHT_INFO = falst
 FF_MEET_STAFF = true
 FF_GEAR_CHECKLIST = true
-FF_MANAGE_LICENSES = true
+FF_MANAGE_LICENSES = false
 FF_SELF_ASSESSMENT = true
 FF_CATCH_CAROUSEL = true
 FF_THE_BUZZ = true
@@ -62,7 +62,7 @@ FLIGHT_STATUS = /functions/v1/flight-status
 
 FORUM_BASE = /rest/v1
 FORUM_API_KEY = $(SUPABASE_ANON_KEY)
-BUZZ_CATEGORY_ID = d7f7900f-97b3-43a2-9c7e-03bab95b7002
+BUZZ_CATEGORY_ID = 5d33c4b7-966c-4d9e-a3ed-ed9eafae168f
 
 // ──────────────────────────────────────────────
 // MARK: - App Branding
@@ -80,7 +80,7 @@ COMMUNITY_TAGLINE = Your Fly Fishing Destination
 DEFAULT_RIVER = Nehalem
 LODGE_RIVERS = Nehalem River,Wilson River,Trask River,Nestucca River,Kilchis River
 FORECAST_LOCATION = Oregon Coast
-FORECAST_NOTES = Rivers on the Oregon Coast near Tillamook with varying conditions. Check local flow gauges for current levels.
+FORECAST_NOTES = Data sourced from USGS. Kilchis River data is approximated from the Wilson River station due to the absence of a dedicated gauge.
 DEFAULT_MAP_LATITUDE = 45.4562
 DEFAULT_MAP_LONGITUDE = -123.8426
 

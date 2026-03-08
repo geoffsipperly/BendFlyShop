@@ -89,12 +89,6 @@ struct MeetStaff: View {
             let sortedKeys = grouped.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
             ForEach(sortedKeys, id: \.self) { lodgeName in
               VStack(alignment: .leading, spacing: 8) {
-                Text(lodgeName)
-                  .font(.title3.weight(.semibold))
-                  .foregroundColor(.blue)
-                  .padding(.top, 8)
-                  .padding(.bottom, 2)
-
                 ForEach(grouped[lodgeName] ?? []) { member in
                   NavigationLink {
                     StaffDetailView(community: community, lodge: member.lodge ?? lodgeName, firstName: member.first_name ?? "", lastName: member.last_name ?? "")

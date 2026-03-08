@@ -126,7 +126,11 @@ enum AnglerAPI {
 // MARK: - ViewModel
 
 private let maxAnglers = 8
-private let defaultGuideNameConst = "Admin"
+private var defaultGuideNameConst: String {
+  AuthService.shared.currentFirstName?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false
+    ? AuthService.shared.currentFirstName!
+    : "Admin"
+}
 
 final class TripFormViewModel: ObservableObject {
   @Published var guideName: String = defaultGuideNameConst
@@ -302,12 +306,6 @@ struct TripFormView: View {
   @State private var showStartPicker = false
   @State private var showEndPicker = false
 
-  // Scan state
-  @State private var scanTargetIndex: Int?
-  @State private var showScanChoice = false
-  @State private var showScanCamera = false
-  @State private var showScanLibrary = false
-
   @State private var showUploadAlert = false
   @State private var uploadSucceeded = false
   @State private var uploadErrorMessage: String?
@@ -396,41 +394,6 @@ struct TripFormView: View {
         range: vm.startDate ... Date.distantFuture
       )
     }
-    // Scan flow
-    .confirmationDialog(
-      "Scan Angler License",
-      isPresented: $showScanChoice,
-      titleVisibility: .visible
-    ) {
-      if UIImagePickerController.isSourceTypeAvailable(.camera) {
-        Button("Camera") { showScanCamera = true }
-      }
-      Button("Photo Library") { showScanLibrary = true }
-      Button("Cancel", role: .cancel) {}
-    }
-    .sheet(isPresented: $showScanCamera) {
-      ImagePicker(source: .camera) { picked in
-        handleScannedImage(picked.image)
-      }
-    }
-    .sheet(isPresented: $showScanLibrary) {
-      ImagePicker(source: .library) { picked in
-        handleScannedImage(picked.image)
-      }
-    }
-    // Candidate picker for multiple matches
-    .confirmationDialog(
-      "Select an angler",
-      isPresented: $vm.showCandidatePicker,
-      titleVisibility: .visible
-    ) {
-      ForEach(vm.candidateProfiles) { cand in
-        Button("\(cand.anglerName) — \(cand.anglerNumber)") {
-          vm.pickCandidate(cand)
-        }
-      }
-      Button("Cancel", role: .cancel) { vm.showCandidatePicker = false }
-    }
     .environment(\.colorScheme, .dark)
   }
 
@@ -446,26 +409,7 @@ struct TripFormView: View {
           .accessibilityIdentifier("communityLabel")
       }
 
-      Picker(selection: Binding(
-        get: { vm.selectedLodgeId ?? defaultLodgeId() },
-        set: { vm.selectedLodgeId = $0 }
-      )) {
-        ForEach(lodges, id: \.self) { lodge in
-          Text(lodge.name ?? "—")
-            .foregroundColor(.white)
-            .tag(lodge.lodgeId as UUID?)
-        }
-      } label: {
-        Text("Lodge").foregroundColor(.blue)
-      }
-      .accessibilityIdentifier("lodgePicker")
-
-      if vm.selectedLodgeId == nil {
-        Text("Select a lodge")
-          .font(.caption)
-          .foregroundColor(.red)
-          .frame(maxWidth: .infinity, alignment: .trailing)
-      }
+      // Lodge picker hidden – auto-selected via defaultLodgeId()
 
       HStack {
         Text("Trip Name").foregroundColor(.blue)
@@ -563,19 +507,8 @@ struct TripFormView: View {
     VStack(alignment: .leading, spacing: 8) {
       anglerHeaderRow(for: index)
       anglerFields(for: index)
-      lookupRow(for: index)
-      lookupErrorText(for: index)
     }
     .padding(.vertical, 4)
-
-    Divider().padding(.vertical, 2)
-
-    Text("Classified Waters Licences")
-      .font(.subheadline)
-      .fontWeight(.semibold)
-      .foregroundColor(.secondary)
-
-    licencesList(for: index)
   }
 
   private func anglerHeaderRow(for index: Int) -> some View {
@@ -585,14 +518,6 @@ struct TripFormView: View {
         .fontWeight(.semibold)
         .foregroundColor(.secondary)
       Spacer()
-      Button {
-        scanTargetIndex = index
-        showScanChoice = true
-      } label: {
-        Label("Scan Angler License", systemImage: "text.viewfinder")
-      }
-      .buttonStyle(.borderless)
-      .accessibilityIdentifier("scanLicenseButton_\(index + 1)")
     }
   }
 
@@ -607,7 +532,7 @@ struct TripFormView: View {
         Text("Required").font(.caption).foregroundColor(.red)
       }
 
-      TextField("Angler Number", text: vm.licenseNumberBinding(for: index))
+      TextField("ODFW ID", text: vm.licenseNumberBinding(for: index))
         .textInputAutocapitalization(.characters)
         .disableAutocorrection(true)
         .keyboardType(.asciiCapable)
@@ -615,48 +540,6 @@ struct TripFormView: View {
       if vm.clients[index].licenseNumber.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
         Text("Required").font(.caption).foregroundColor(.red)
       }
-    }
-  }
-
-  private func lookupRow(for index: Int) -> some View {
-    HStack(spacing: 8) {
-      Button {
-        vm.lookupAngler(for: index)
-      } label: {
-        HStack(spacing: 6) {
-          Image(
-            systemName: vm.clients[index].isLookingUp
-              ? "hourglass"
-              : "magnifyingglass.circle.fill"
-          )
-          .font(.body.weight(.semibold))
-          Text("Look up")
-            .font(.callout.weight(.semibold))
-        }
-      }
-      .disabled(
-        vm.clients[index].isLookingUp ||
-        (
-          vm.clients[index].name.trimmingCharacters(in: .whitespaces).isEmpty &&
-          vm.clients[index].licenseNumber.trimmingCharacters(in: .whitespaces).isEmpty
-        )
-      )
-      .buttonStyle(.bordered)
-      .accessibilityIdentifier("lookupButton_\(index + 1)")
-
-      if vm.clients[index].isLookingUp {
-        ProgressView()
-      }
-    }
-  }
-
-  @ViewBuilder
-  private func lookupErrorText(for index: Int) -> some View {
-    if let err = vm.clients[index].lookupError, !err.isEmpty {
-      Text(err)
-        .font(.caption)
-        .foregroundColor(.red)
-        .accessibilityIdentifier("lookupError_\(index + 1)")
     }
   }
 
@@ -703,83 +586,6 @@ struct TripFormView: View {
 
   // Seed logic moved to PersistenceController.seedCommunityIfNeeded
   // so it runs at app launch before any sync or catch recording.
-
-  // MARK: - OCR handling
-
-  private func handleScannedImage(_ image: UIImage?) {
-    guard let idx = scanTargetIndex, let img = image else { return }
-
-    let opts = FSELicenseTextRecognizer.Options(
-      recognitionLanguages: ["en-CA", "en-US"],
-      region: .bcNonTidal
-    )
-
-    FSELicenseTextRecognizer.recognize(in: img, options: opts) { result in
-      DispatchQueue.main.async {
-        var didFill = false
-
-        if let lic = result.licenseNumber?.trimmingCharacters(in: .whitespacesAndNewlines), !lic.isEmpty {
-          vm.updateClient(at: idx) { $0.licenseNumber = lic }
-          didFill = true
-        }
-        if let name = result.name?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty {
-          vm.updateClient(at: idx) { $0.name = name }
-          didFill = true
-        }
-
-        // Optional profile details from OCR (if available)
-        if let dobStr = result.dobISO8601, !dobStr.isEmpty {
-          let df = DateFormatter()
-          df.calendar = Calendar(identifier: .gregorian)
-          df.locale = Locale(identifier: "en_US_POSIX")
-          df.dateFormat = "yyyy-MM-dd"
-          let dob = df.date(from: dobStr)
-          vm.updateClient(at: idx) { $0.dateOfBirth = dob }
-        }
-
-        if let res = result.residency?.trimmingCharacters(in: .whitespacesAndNewlines), !res.isEmpty {
-          let lower = res.lowercased()
-          let normalized: String
-          if lower.contains("canada") || lower.contains("b.c.") || lower.contains("bc") || lower.contains("british columbia") {
-            normalized = "CA"
-          } else if lower.contains("not a canadian") || lower.contains("usa") || lower.contains("united states") {
-            normalized = "US"
-          } else {
-            normalized = "other"
-          }
-          vm.updateClient(at: idx) { $0.residency = normalized }
-        }
-
-        if let tel = result.telephone?.trimmingCharacters(in: .whitespacesAndNewlines), !tel.isEmpty {
-          vm.updateClient(at: idx) { $0.telephoneNumber = tel }
-        }
-
-        let drafts = mapClassified(result.classifiedLicences)
-        if !drafts.isEmpty {
-          vm.setLicences(drafts, for: idx)
-          didFill = true
-        }
-
-        if !didFill {
-          vm.toastMessage = "Couldn't find Licencee, Angler Number, or Classified Waters. Try a clearer photo."
-          vm.showToast = true
-        }
-      }
-    }
-  }
-
-  private func mapClassified(_ rows: [ClassifiedLicenceParse]) -> [ClassifiedLicenceDraft] {
-    rows.map { r in
-      ClassifiedLicenceDraft(
-        licNumber: r.licNumber,
-        water: r.water,
-        validFrom: r.validFrom,
-        validTo: r.validTo,
-        guideName: r.guideName,
-        vendor: r.vendor
-      )
-    }
-  }
 
   private func performUpload(_ upsert: TripAPI.UpsertTripRequest) {
     Task { @MainActor in

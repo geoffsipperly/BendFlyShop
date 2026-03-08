@@ -54,7 +54,7 @@ final class UploadFarmedReports {
 
   // MARK: - Response DTOs
 
-  private struct ResponseDTO: Decodable {
+  private nonisolated struct ResponseDTO: Decodable {
     let success: Bool?
     let processed: Int
     let successful: Int
@@ -62,7 +62,7 @@ final class UploadFarmedReports {
     let results: [ResponseResultDTO]?
   }
 
-  private struct ResponseResultDTO: Decodable {
+  private nonisolated struct ResponseResultDTO: Decodable {
     let reportId: String
     let status: String
     let farmedReportId: String?

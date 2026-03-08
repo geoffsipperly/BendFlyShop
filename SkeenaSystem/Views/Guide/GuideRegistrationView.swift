@@ -294,7 +294,7 @@ struct GuideRegistrationView: View {
   private var anglerNumberFieldIfNeeded: some View {
     if userType == .angler {
       fieldBackground(
-        TextField("8-Digit Angler #", text: $anglerNumber)
+        TextField("ODFW ID", text: $anglerNumber)
           .keyboardType(.numberPad)
           .textInputAutocapitalization(.never)
           .accessibilityIdentifier("anglerNumber_registration")
