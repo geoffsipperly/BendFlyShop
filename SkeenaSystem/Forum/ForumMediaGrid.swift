@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // ForumMediaGrid.swift
 // Display grid for forum post media with fullscreen viewing
 

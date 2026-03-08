@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 
 import CoreLocation
 import Foundation
@@ -82,12 +82,13 @@ final class UploadFarmedReports {
 
   // MARK: - Constants
 
-  private static let endpoint = URL(
-    string: "https://rowytjuewalinlnlzysb.supabase.co/functions/v1/upload-farmed-reports"
-  )!
+  private static var endpoint: URL {
+    AppEnvironment.shared.projectURL.appendingPathComponent("functions/v1/upload-farmed-reports")
+  }
 
-  private static let apiKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvd3l0anVld2FsaW5sbmx6eXNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwNzEyNzcsImV4cCI6MjA4MzY0NzI3N30.HbtL41UWPFAe__WJveFadlyoLIFKKrdgMB0ihJW7_G8"
+  private static var apiKey: String {
+    AppEnvironment.shared.anonKey
+  }
 
   // MARK: - Validation (testable without instantiation)
 

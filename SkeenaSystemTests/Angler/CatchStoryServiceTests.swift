@@ -29,7 +29,7 @@ final class CatchStoryServiceTests: XCTestCase {
     let original = CatchStoryDTO(
       catch_id: "catch-123",
       title: "Epic Steelhead",
-      summary: "A beautiful 36-inch steelhead caught on the Bulkley River."
+      summary: "A beautiful 36-inch steelhead caught on the Deschutes River."
     )
 
     let data = try JSONEncoder().encode(original)

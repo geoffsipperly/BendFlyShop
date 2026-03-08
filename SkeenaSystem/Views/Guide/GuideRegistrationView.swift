@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 
 import SwiftUI
 import UIKit
@@ -10,9 +10,7 @@ struct GuideRegistrationView: View {
   // MARK: - Community
 
   enum Community: String, CaseIterable, Identifiable {
-    case epicWaters = "Epic Waters"
-    case rioPalenaLodge = "Rio Palena Lodge"
-    case tedCarlinFishingExperience = "Ted Carlin Fishing"
+    case bendFlyShop = "Bend Fly Shop"
 
     var id: String { rawValue }
   }
@@ -25,7 +23,7 @@ struct GuideRegistrationView: View {
   // MARK: - Form fields
 
   @State private var userType: AuthService.UserType = .angler
-  @State private var selectedCommunity: Community = .epicWaters
+  @State private var selectedCommunity: Community = .bendFlyShop
 
   @State private var firstName: String = ""
   @State private var lastName: String = ""
@@ -729,6 +727,6 @@ struct GuideRegistrationView: View {
     showScanLibrary = false
 
     // Reset community to default when switching roles
-    selectedCommunity = .epicWaters
+    selectedCommunity = .bendFlyShop
   }
 }

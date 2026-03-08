@@ -124,7 +124,7 @@ public final class AppEnvironment {
     /// Display name for the app/community (used in UI).
     public var appDisplayName: String {
         if let v = overrideAppDisplayName { return v }
-        return stringFromInfo("APP_DISPLAY_NAME") ?? "Epic Waters"
+        return stringFromInfo("APP_DISPLAY_NAME") ?? "Bend Fly Shop"
     }
 
     /// Asset catalog name for the app logo image (used in headers, templates, etc.).
@@ -144,7 +144,7 @@ public final class AppEnvironment {
     /// Community tagline displayed on login, landing, and header views.
     public var communityTagline: String {
         if let v = overrideCommunityTagline { return v }
-        return stringFromInfo("COMMUNITY_TAGLINE") ?? "Intelligent Conservation"
+        return stringFromInfo("COMMUNITY_TAGLINE") ?? "Your Fly Fishing Destination"
     }
 
     /// Default river name used when no GPS-based river is resolved.
@@ -152,7 +152,7 @@ public final class AppEnvironment {
     public var defaultRiver: String {
         if let v = overrideDefaultRiver { return v }
         if let v = stringFromInfo("DEFAULT_RIVER"), !v.isEmpty { return v }
-        return lodgeRivers.first ?? "Bulkley"
+        return lodgeRivers.first ?? "Deschutes"
     }
 
     // MARK: - Logging configuration
@@ -322,25 +322,25 @@ public final class AppEnvironment {
 
     // MARK: - Location configuration
 
-    /// Forecast location name (e.g., "Haida Gwaii"). Used by the extended forecast feature.
+    /// Forecast location name (e.g., "Bend Oregon"). Used by the extended forecast feature.
     public var forecastLocation: String {
         if let v = overrideForecastLocation { return v }
         if let v = stringFromInfo("FORECAST_LOCATION"), !v.isEmpty { return v }
-        return "Haida Gwaii"
+        return "Bend Oregon"
     }
 
-    /// Default map center latitude (e.g., 53.25 for Haida Gwaii).
+    /// Default map center latitude (e.g., 44.06 for Bend, Oregon).
     public var defaultMapLatitude: Double {
         if let v = overrideDefaultMapLatitude { return v }
         if let s = stringFromInfo("DEFAULT_MAP_LATITUDE"), let v = Double(s) { return v }
-        return 53.25
+        return 44.06
     }
 
-    /// Default map center longitude (e.g., -132.07 for Haida Gwaii).
+    /// Default map center longitude (e.g., -121.31 for Bend, Oregon).
     public var defaultMapLongitude: Double {
         if let v = overrideDefaultMapLongitude { return v }
         if let s = stringFromInfo("DEFAULT_MAP_LONGITUDE"), let v = Double(s) { return v }
-        return -132.07
+        return -121.31
     }
 
     // MARK: - Image configuration
@@ -352,7 +352,7 @@ public final class AppEnvironment {
         return 0.85
     }
 
-    /// River names available for this lodge (e.g., "Copper Creek", "Pallant Creek").
+    /// River names available for this lodge (e.g., "Deschutes River", "Metolius River").
     /// Used to build river condition tiles. Names are sent as-is to the river-conditions API.
     public var lodgeRivers: [String] {
         if let v = overrideLodgeRivers { return v }
@@ -361,7 +361,7 @@ public final class AppEnvironment {
                 .map { $0.trimmingCharacters(in: .whitespaces) }
                 .filter { !$0.isEmpty }
         }
-        return ["Copper Creek", "Pallant Creek", "Yakoun River", "Tlell River", "Mamin River"]
+        return ["Deschutes River", "Metolius River", "Crooked River", "Fall River"]
     }
 
     // MARK: - Fish detection ML calibration

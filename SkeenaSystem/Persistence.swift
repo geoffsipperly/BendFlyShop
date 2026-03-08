@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 
 import CoreData
 
@@ -35,17 +35,17 @@ final class PersistenceController {
     container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     container.viewContext.automaticallyMergesChangesFromParent = true
 
-    // Ensure the "Epic Waters" Community and its Lodges exist before
+    // Ensure the community and its Lodges exist before
     // any trip sync or catch-recording flow tries to look them up.
-    seedEpicWatersIfNeeded(context: container.viewContext)
+    seedCommunityIfNeeded(context: container.viewContext)
   }
 
   // MARK: - Seed data
 
-  /// Creates the "Epic Waters" Community and its associated Lodge
+  /// Creates the community and its associated Lodge
   /// records if they don't already exist. Safe to call multiple times;
   /// it only inserts missing rows.
-  func seedEpicWatersIfNeeded(context: NSManagedObjectContext) {
+  func seedCommunityIfNeeded(context: NSManagedObjectContext) {
     context.performAndWait {
       let communityFetch: NSFetchRequest<Community> = Community.fetchRequest()
       communityFetch.predicate = NSPredicate(format: "name == %@", AppEnvironment.shared.communityName)
@@ -63,18 +63,12 @@ final class PersistenceController {
           community = c
         }
       } catch {
-        AppLogging.log({ "seedEpicWatersIfNeeded: Community lookup failed: \(error.localizedDescription)" }, level: .error, category: .persistence)
+        AppLogging.log({ "seedCommunityIfNeeded: Community lookup failed: \(error.localizedDescription)" }, level: .error, category: .persistence)
         return
       }
 
       let desired: [String] = [
-        "Bulkley Basecamp",
-        "Babine Steelhead Lodge",
-        "Copper Bay Lodge",
-        "Frontier Steelhead Experience",
-        "Epic Narrows Musky Camp",
-        "Labrador Heli-Fishing Atlantic Salmon",
-        "Togiak Epic Spey"
+        "Bend Fly Shop"
       ]
 
       let lodgeFetch: NSFetchRequest<Lodge> = Lodge.fetchRequest()
@@ -83,7 +77,7 @@ final class PersistenceController {
       do {
         existing = try context.fetch(lodgeFetch)
       } catch {
-        AppLogging.log({ "seedEpicWatersIfNeeded: Lodge lookup failed: \(error.localizedDescription)" }, level: .error, category: .persistence)
+        AppLogging.log({ "seedCommunityIfNeeded: Lodge lookup failed: \(error.localizedDescription)" }, level: .error, category: .persistence)
         return
       }
 
@@ -97,7 +91,7 @@ final class PersistenceController {
       if let orphans = try? context.fetch(orphanFetch) {
         for lodge in orphans {
           lodge.community = community
-          AppLogging.log({ "seedEpicWatersIfNeeded: linked orphan lodge '\(lodge.name ?? "")' to Epic Waters" }, level: .info, category: .persistence)
+          AppLogging.log({ "seedCommunityIfNeeded: linked orphan lodge '\(lodge.name ?? "")' to \(AppEnvironment.shared.communityName)" }, level: .info, category: .persistence)
         }
       }
 
@@ -126,7 +120,7 @@ final class PersistenceController {
 
       if createdAny || context.hasChanges {
         do { try context.save() } catch {
-          AppLogging.log({ "seedEpicWatersIfNeeded: Failed to save: \(error.localizedDescription)" }, level: .error, category: .persistence)
+          AppLogging.log({ "seedCommunityIfNeeded: Failed to save: \(error.localizedDescription)" }, level: .error, category: .persistence)
         }
       }
     }

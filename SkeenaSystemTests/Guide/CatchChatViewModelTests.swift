@@ -398,12 +398,12 @@ final class CatchChatViewModelTests: XCTestCase {
   }
 
   func testUpdateCommunity_setsValue() {
-    vm.updateCommunity(communityID: "Epic Waters")
-    XCTAssertEqual(vm.communityID, "Epic Waters")
+    vm.updateCommunity(communityID: "Bend Fly Shop")
+    XCTAssertEqual(vm.communityID, "Bend Fly Shop")
   }
 
   func testUpdateCommunity_nil_clearsValue() {
-    vm.updateCommunity(communityID: "Epic Waters")
+    vm.updateCommunity(communityID: "Bend Fly Shop")
     vm.updateCommunity(communityID: nil)
     XCTAssertNil(vm.communityID)
   }

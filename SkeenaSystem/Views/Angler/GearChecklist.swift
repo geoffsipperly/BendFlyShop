@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // GearChecklist.swift
 
 import SwiftUI
@@ -124,7 +124,7 @@ struct GearChecklist: View {
               .font(.footnote)
           }
 
-          Text("There are a variety of rivers in Haida Gwaii and all unique and technical. The equipment below is specific to the challenging nature of angling in the rainforest.")
+          Text("Central Oregon offers diverse rivers each with unique character. The equipment below is tailored to the conditions you'll encounter.")
             .foregroundColor(.white)
             .font(.body)
             .italic()
@@ -150,7 +150,7 @@ struct GearChecklist: View {
             .font(.headline.weight(.semibold))
             .foregroundColor(.blue)
 
-          Text("Haida Gwaii rivers are heavily forested with low-hanging branches. Casts must be deliberate — shorter spey and switch rods work best")
+          Text("Central Oregon rivers vary from spring creeks to larger tailwaters. Match your rod selection to the water you'll be fishing.")
             .foregroundColor(.white)
             .font(.subheadline)
 
@@ -432,7 +432,7 @@ struct GearChecklist: View {
 
   private func loadGear() async {
     errorText = nil
-    let lodgeName = "Copper Bay"
+    let lodgeName = "Bend Fly Shop"
 
     let tokenOpt = await auth.currentAccessToken()
     guard let token = tokenOpt, !token.isEmpty else {
@@ -552,7 +552,7 @@ struct GearChecklist: View {
 
     let body = GearBody(
       angler_id: anglerId,
-      lodge_name: "Copper Bay",
+      lodge_name: "Bend Fly Shop",
       waders: hasWaders,
       boots: hasBoots,
       wading_jacket: hasWadingJacket,
@@ -576,7 +576,7 @@ struct GearChecklist: View {
         return false
       }
 
-      let key = cacheKey(anglerId: anglerId, lodgeName: "Copper Bay")
+      let key = cacheKey(anglerId: anglerId, lodgeName: "Bend Fly Shop")
       let payload: [String: Any] = [
         "waders": hasWaders,
         "boots": hasBoots,

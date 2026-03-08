@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // FeatureFlags.swift
 //
 // Reads a Bool feature flag from Info.plist (populated via xcconfig).

@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // AnglerRecommendedGearView.swift
 import SwiftUI
 
@@ -26,7 +26,7 @@ struct AnglerRecommendedGearView: View {
 
     GearSection(
       title: "Spey Rods: Recommended to bring",
-      description: "Haida Gwaii rivers are heavily forested with low-hanging branches. Casts must be deliberate — shorter spey and switch rods work best.",
+      description: "Central Oregon rivers vary from spring creeks to larger tailwaters. Match your rod selection to the water you'll be fishing.",
       items: [
         GearItem(
           title: "Smaller Creeks",

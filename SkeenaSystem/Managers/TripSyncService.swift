@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 //
 // TripSyncService.swift
 //

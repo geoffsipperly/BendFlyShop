@@ -1,6 +1,6 @@
 //
 // TripListView.swift
-// Epic Waters
+// Bend Fly Shop
 //
 // Trip list with simplified auto-archive (archive all completed trips) and
 // right-aligned status capsules.

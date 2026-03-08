@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // AnglerCatchMapView.swift — Mapbox Outdoors map plotting angler catch locations
 
 import MapboxMaps

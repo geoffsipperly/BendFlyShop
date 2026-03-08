@@ -1,6 +1,6 @@
-// Epic Waters
+// Bend Fly Shop
 // LandingView.swift
-// Epic Waters – iOS 15+ nav-bar button + pinned footer
+// Bend Fly Shop – iOS 15+ nav-bar button + pinned footer
 import CoreLocation
 import SwiftUI
 

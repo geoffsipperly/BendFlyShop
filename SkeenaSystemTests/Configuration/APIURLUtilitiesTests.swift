@@ -53,8 +53,8 @@ final class APIURLUtilitiesTests: XCTestCase {
   }
 
   func testNormalizeBaseURL_supabaseStyleHost() {
-    let result = APIURLUtilities.normalizeBaseURL("paxslufnrjjvvflgciir.supabase.co")
-    XCTAssertEqual(result, "https://paxslufnrjjvvflgciir.supabase.co")
+    let result = APIURLUtilities.normalizeBaseURL("example-project.supabase.co")
+    XCTAssertEqual(result, "https://example-project.supabase.co")
   }
 
   // MARK: - infoPlistString

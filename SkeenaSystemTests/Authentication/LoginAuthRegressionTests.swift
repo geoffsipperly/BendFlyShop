@@ -142,7 +142,7 @@ final class LoginAuthRegressionTests: XCTestCase {
     }
 
     let auth = AuthService.shared
-    try await auth.signUp(email: "g@example.com", password: "password", firstName: "G", lastName: "U", userType: .guide, community: "Epic Waters")
+    try await auth.signUp(email: "g@example.com", password: "password", firstName: "G", lastName: "U", userType: .guide, community: "Bend Fly Shop")
     XCTAssertTrue(auth.isAuthenticated)
     XCTAssertEqual(auth.currentUserType, .guide)
     XCTAssertEqual(auth.currentFirstName, "G")
@@ -178,7 +178,7 @@ final class LoginAuthRegressionTests: XCTestCase {
     }
 
     let auth = AuthService.shared
-    try await auth.signUp(email: "a@example.com", password: "pw", firstName: "A", lastName: "L", userType: .angler, community: "Epic Waters", anglerNumber: "12345")
+    try await auth.signUp(email: "a@example.com", password: "pw", firstName: "A", lastName: "L", userType: .angler, community: "Bend Fly Shop", anglerNumber: "12345")
     XCTAssertTrue(auth.isAuthenticated)
     XCTAssertEqual(auth.currentUserType, .angler)
     XCTAssertEqual(auth.currentAnglerNumber, "12345")

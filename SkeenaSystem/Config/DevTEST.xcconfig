@@ -9,9 +9,9 @@
 // MARK: - Backend & Authentication
 // ──────────────────────────────────────────────
 
-SUPABASE_PROJECT_URL = https:/rowytjuewalinlnlzysb.supabase.co
-API_BASE_URL = rowytjuewalinlnlzysb.supabase.co
-SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJvd3l0anVld2FsaW5sbmx6eXNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwNzEyNzcsImV4cCI6MjA4MzY0NzI3N30.HbtL41UWPFAe__WJveFadlyoLIFKKrdgMB0ihJW7_G8
+SUPABASE_PROJECT_URL = PLACEHOLDER_URL
+API_BASE_URL = PLACEHOLDER_HOST
+SUPABASE_ANON_KEY = PLACEHOLDER_ANON_KEY
 LOG_LEVEL = error
 BETA_RELEASE = true
 
@@ -68,21 +68,21 @@ BUZZ_CATEGORY_ID = d7f7900f-97b3-43a2-9c7e-03bab95b7002
 // MARK: - App Branding
 // ──────────────────────────────────────────────
 
-APP_DISPLAY_NAME = Epic Waters
+APP_DISPLAY_NAME = Bend Fly Shop
 APP_LOGO_ASSET = AppLogo
-COMMUNITY = Epic Waters
-COMMUNITY_TAGLINE = Intelligent Conservation
+COMMUNITY = Bend Fly Shop
+COMMUNITY_TAGLINE = Your Fly Fishing Destination
 
 // ──────────────────────────────────────────────
 // MARK: - Location & Geography
 // ──────────────────────────────────────────────
 
-DEFAULT_RIVER = Yakoun
-LODGE_RIVERS = Copper Creek,Pallant Creek,Yakoun River,Tlell River,Mamin River
-FORECAST_LOCATION = Haida Gwaii
-FORECAST_NOTES = Only the Pallant and Yakoun have water meters in Haida Gwaii. Pallant and Copper use reflected readings from 08OB002, while Yakoun, Tlell, and Mamin use 08OA002.
-DEFAULT_MAP_LATITUDE = 53.25
-DEFAULT_MAP_LONGITUDE = -132.07
+DEFAULT_RIVER = Deschutes
+LODGE_RIVERS = Deschutes River,Metolius River,Crooked River,Fall River
+FORECAST_LOCATION = Bend Oregon
+FORECAST_NOTES = Rivers in Central Oregon with varying conditions. Check local flow gauges for current levels.
+DEFAULT_MAP_LATITUDE = 44.06
+DEFAULT_MAP_LONGITUDE = -121.31
 
 // ──────────────────────────────────────────────
 // MARK: - Maps

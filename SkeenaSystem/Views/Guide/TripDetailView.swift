@@ -1,5 +1,5 @@
 // TripDetailView.swift
-// Epic Waters
+// Bend Fly Shop
 
 import CoreData
 import SwiftUI
@@ -610,7 +610,7 @@ private struct TripEditForm: View {
               ),
               content: {
                 VStack(spacing: 8) {
-                  TextField("Water (e.g., Bulkley River)", text: Binding(
+                  TextField("Water (e.g., Deschutes River)", text: Binding(
                     get: { newWater[id, default: "" ] },
                     set: {
                       newWater[id] = $0

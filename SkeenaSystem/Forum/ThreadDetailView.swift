@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 
 // ThreadDetailView.swift
 import SwiftUI
@@ -26,7 +26,7 @@ struct ThreadDetailView: View {
     ZStack {
       Color.black.ignoresSafeArea()
       VStack(spacing: 0) {
-        // Thread heading (no Epic Waters header on detail)
+        // Thread heading (no Bend Fly Shop header on detail)
         VStack(alignment: .leading, spacing: 6) {
           Text(thread.title)
             .font(.title2.bold())

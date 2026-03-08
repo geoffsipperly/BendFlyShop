@@ -1,9 +1,9 @@
 //
 //  RiverLocator.swift
-//  River / Epic Waters
+//  River / Bend Fly Shop
 //
 //  Uses coordinate arrays defined in RiverCoordinates.swift
-//  (e.g. coppercreekCoordinates, maminCoordinates, etc.)
+//  (e.g. deschutesCoordinates, metoliusCoordinates, etc.)
 //
 
 import Foundation
@@ -16,12 +16,12 @@ import CoreLocation
 /// around each of these points, with radius `maxDistanceKm`.
 struct RiverDefinition {
   let name: String
-  let communityID: String        // e.g. "Epic Waters"
+  let communityID: String
   let coordinates: [CLLocationCoordinate2D]
   let maxDistanceKm: Double      // max distance from ANY point to count as on this river
 
   /// The river's base name with water-body suffixes stripped
-  /// (e.g. "Copper Creek" → "Copper", "Yakoun River" → "Yakoun").
+  /// (e.g. "Deschutes River" → "Deschutes", "Crooked River" → "Crooked").
   var shortName: String {
     let suffixes = [" Creek", " River", " Lake", " Stream"]
     for suffix in suffixes where name.hasSuffix(suffix) {
@@ -38,56 +38,37 @@ final class RiverLocator {
 
   // MARK: - Dataset
 
-  /// For now we only have Epic Waters rivers near Haida Gwaii.
-  /// Coordinate arrays are defined in RiverCoordinates.swift:
-  /// - coppercreekCoordinates
-  /// - pallantcreekCoordinates
-  /// - maminCoordinates
-  /// - tlellCoordinates
-  /// - yakounCoordinates
-  ///
-  /// NOTE: maxDistanceKm values are inherited from the original centroid-based
-  /// implementation and can be tuned as you test in the field.
+  /// Bend, Oregon rivers.
+  /// Coordinate arrays are defined in RiverCoordinates.swift.
+  /// Replace placeholder coordinates with real KML spine data for accuracy.
   private let rivers: [RiverDefinition] = [
-    // Epic Waters – Haida Gwaii, BC
+    // Bend Fly Shop – Central Oregon
 
-    // Cooper Creek (also called Copper Creek in some sources).
     RiverDefinition(
-      name: "Copper Creek",
+      name: "Deschutes River",
       communityID: AppEnvironment.shared.communityName,
-      coordinates: coppercreekCoordinates,
+      coordinates: deschutesCoordinates,
       maxDistanceKm: 10
     ),
 
-    // Pallant Creek (Haida Gwaii)
     RiverDefinition(
-      name: "Pallant Creek",
+      name: "Metolius River",
       communityID: AppEnvironment.shared.communityName,
-      coordinates: pallantcreekCoordinates,
+      coordinates: metoliusCoordinates,
       maxDistanceKm: 10
     ),
 
-    // Yakoun River (largest river on Haida Gwaii)
     RiverDefinition(
-      name: "Yakoun River",
+      name: "Crooked River",
       communityID: AppEnvironment.shared.communityName,
-      coordinates: yakounCoordinates,
+      coordinates: crookedCoordinates,
       maxDistanceKm: 10
     ),
 
-    // Tlell River
     RiverDefinition(
-      name: "Tlell River",
+      name: "Fall River",
       communityID: AppEnvironment.shared.communityName,
-      coordinates: tlellCoordinates,
-      maxDistanceKm: 10
-    ),
-
-    // Mamin River – approximate centroid path on Haida Gwaii (to be refined)
-    RiverDefinition(
-      name: "Mamin River",
-      communityID: AppEnvironment.shared.communityName,
-      coordinates: maminCoordinates,
+      coordinates: fallriverCoordinates,
       maxDistanceKm: 10
     )
   ]

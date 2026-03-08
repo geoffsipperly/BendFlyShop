@@ -3,7 +3,7 @@
 //
 // Unit tests for the FORECAST_LOCATION configuration variable:
 // verifies AppEnvironment.forecastLocation reads from config,
-// supports runtime override, and falls back to "Haida Gwaii".
+// supports runtime override, and falls back to "Bend Oregon".
 
 import XCTest
 @testable import SkeenaSystem
@@ -26,13 +26,13 @@ final class ForecastLocationConfigTests: XCTestCase {
 
   // MARK: - Default Value
 
-  func testForecastLocation_defaultsToHaidaGwaii() {
+  func testForecastLocation_defaultsToBendOregon() {
     // When no override is set, the value should come from Info.plist (xcconfig)
-    // or fall back to "Haida Gwaii"
+    // or fall back to "Bend Oregon"
     let location = AppEnvironment.shared.forecastLocation
     XCTAssertFalse(location.isEmpty, "Forecast location should never be empty")
-    XCTAssertEqual(location, "Haida Gwaii",
-                   "Default forecast location should be 'Haida Gwaii'")
+    XCTAssertEqual(location, "Bend Oregon",
+                   "Default forecast location should be 'Bend Oregon'")
   }
 
   // MARK: - Override
@@ -54,7 +54,7 @@ final class ForecastLocationConfigTests: XCTestCase {
     XCTAssertEqual(AppEnvironment.shared.forecastLocation, "Smithers")
 
     AppEnvironment.shared.overrideForecastLocation = nil
-    XCTAssertEqual(AppEnvironment.shared.forecastLocation, "Haida Gwaii",
+    XCTAssertEqual(AppEnvironment.shared.forecastLocation, "Bend Oregon",
                    "Clearing override should restore default value")
   }
 
@@ -70,9 +70,9 @@ final class ForecastLocationConfigTests: XCTestCase {
 
   func testForecastLocation_matchesWeatherLocationSnapshot() {
     // This ensures the new configurable FORECAST_LOCATION matches the
-    // previously hardcoded "Haida Gwaii" value from ConfigurationSnapshotTests
+    // previously hardcoded "Bend Oregon" value from ConfigurationSnapshotTests
     let location = AppEnvironment.shared.forecastLocation
-    XCTAssertEqual(location, "Haida Gwaii",
+    XCTAssertEqual(location, "Bend Oregon",
                    "FORECAST_LOCATION should match the previously hardcoded weather location")
   }
 }

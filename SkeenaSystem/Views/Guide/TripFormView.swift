@@ -1,6 +1,6 @@
 //
 // TripFormView.swift
-// Epic Waters
+// Bend Fly Shop
 //
 
 import Combine
@@ -362,7 +362,7 @@ struct TripFormView: View {
       if vm.endDate < newValue { vm.endDate = newValue }
     }
     .onAppear {
-      PersistenceController.shared.seedEpicWatersIfNeeded(context: context)
+      PersistenceController.shared.seedCommunityIfNeeded(context: context)
       if vm.selectedLodgeId == nil { vm.selectedLodgeId = defaultLodgeId() }
     }
     .alert(uploadSucceeded ? "Trip uploaded" : "Upload failed", isPresented: $showUploadAlert) {
@@ -695,13 +695,13 @@ struct TripFormView: View {
   // MARK: - Lodges / Community helpers
 
   private func defaultLodgeId() -> UUID? {
-    if let copper = lodges.first(where: { ($0.name ?? "").localizedCaseInsensitiveContains("Copper Bay Lodge") }) {
-      return copper.lodgeId
+    if let first = lodges.first(where: { ($0.name ?? "").localizedCaseInsensitiveContains("Bend Fly Shop") }) {
+      return first.lodgeId
     }
     return lodges.first?.lodgeId
   }
 
-  // Seed logic moved to PersistenceController.seedEpicWatersIfNeeded
+  // Seed logic moved to PersistenceController.seedCommunityIfNeeded
   // so it runs at app launch before any sync or catch recording.
 
   // MARK: - OCR handling

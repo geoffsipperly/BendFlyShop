@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // ForumImageCache.swift
 // Memory + disk cache for forum media images
 

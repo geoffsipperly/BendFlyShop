@@ -41,7 +41,7 @@ final class SkeenaSystemUITests: XCTestCase {
                app = XCUIApplication()
                app.launchArguments += ["-uiTesting"]
                // optionally configure API base URL for your test server
-               app.launchEnvironment["API_BASE_URL"] = "https://rowytjuewalinlnlzysb.supabase.co"
+               app.launchEnvironment["API_BASE_URL"] = "PLACEHOLDER_URL"
                app.launch()
     }
 

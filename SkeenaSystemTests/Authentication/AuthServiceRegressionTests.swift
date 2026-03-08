@@ -192,7 +192,7 @@ final class AuthServiceRegressionTests: XCTestCase {
     }
 
     let auth = AuthService.shared
-    try await auth.signUp(email: "new@example.com", password: "password", firstName: "New", lastName: "User", userType: .guide, community: "Epic Waters")
+    try await auth.signUp(email: "new@example.com", password: "password", firstName: "New", lastName: "User", userType: .guide, community: "Bend Fly Shop")
     XCTAssertTrue(auth.isAuthenticated, "After signUp+signIn, should be authenticated")
   }
 

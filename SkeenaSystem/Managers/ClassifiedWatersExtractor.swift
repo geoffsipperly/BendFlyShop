@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 
 import CoreGraphics
 import Foundation
@@ -197,7 +197,7 @@ public enum BCClassifiedWaters {
 
   fileprivate static func ocrFixWater(_ s: String) -> String {
     var x = s
-    x = x.replacingOccurrences(of: "Bukley", with: "Bulkley")
+    x = x.replacingOccurrences(of: "Dschutes", with: "Deschutes")
     x = x.replacingOccurrences(of: "Morice", with: "Morice")
     return x.trimmingCharacters(in: CharacterSet.whitespaces)
   }

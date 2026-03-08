@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 
 // AuthService+ForumSupport.swift
 import Foundation

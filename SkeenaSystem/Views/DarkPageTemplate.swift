@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // DarkPageTemplate.swift — Shared dark-themed page styling components
 //
 // De-duplicated from AnglerLandingView.swift and LandingView.swift.
@@ -274,7 +274,7 @@ struct BottomToolbar<Content: View>: View {
 // MARK: - Dark Page Template
 
 /// A shared page wrapper that provides the consistent dark-themed styling
-/// used across Epic Waters views (black background, dark nav bar, white foreground,
+/// used across Bend Fly Shop views (black background, dark nav bar, white foreground,
 /// and an optional pinned bottom toolbar).
 ///
 /// Usage for **pushed** views (no bottom toolbar):

@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // CatchDetailView.swift
 import SwiftUI
 

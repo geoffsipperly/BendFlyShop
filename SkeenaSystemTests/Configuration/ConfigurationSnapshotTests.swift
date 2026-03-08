@@ -7,7 +7,7 @@ import CoreLocation
 /// These tests serve as regression tests during the refactoring process.
 /// If any test fails after refactoring, it means behavior has changed.
 ///
-/// IMPORTANT: These values represent the "Epic Waters" community configuration
+/// IMPORTANT: These values represent the "Bend Fly Shop" community configuration
 /// that will be extracted to a configurable format during the multi-community refactor.
 @MainActor
 final class ConfigurationSnapshotTests: XCTestCase {
@@ -37,14 +37,14 @@ final class ConfigurationSnapshotTests: XCTestCase {
 
   /// The community name used throughout the app
   func testSnapshot_communityName() {
-    XCTAssertEqual("Epic Waters", "Epic Waters",
-                   "SNAPSHOT: Community name is 'Epic Waters'")
+    XCTAssertEqual("Bend Fly Shop", "Bend Fly Shop",
+                   "SNAPSHOT: Community name is 'Bend Fly Shop'")
   }
 
   /// The community tagline displayed in UI
   func testSnapshot_communityTagline() {
-    XCTAssertEqual("Intelligent Conservation", "Intelligent Conservation",
-                   "SNAPSHOT: Community tagline is 'Intelligent Conservation'")
+    XCTAssertEqual("Your Fly Fishing Destination", "Your Fly Fishing Destination",
+                   "SNAPSHOT: Community tagline is 'Your Fly Fishing Destination'")
   }
 
   // ============================================================================
@@ -54,13 +54,7 @@ final class ConfigurationSnapshotTests: XCTestCase {
   /// All lodge names that should be seeded
   func testSnapshot_allLodgeNames() {
     let expectedLodges: Set<String> = [
-      "Bulkley Basecamp",
-      "Babine Steelhead Lodge",
-      "Copper Bay Lodge",
-      "Frontier Steelhead Experience",
-      "Epic Narrows Musky Camp",
-      "Labrador Heli-Fishing Atlantic Salmon",
-      "Togiak Epic Spey"
+      "Bend Fly Shop"
     ]
 
     let fetch: NSFetchRequest<Lodge> = Lodge.fetchRequest()
@@ -68,7 +62,7 @@ final class ConfigurationSnapshotTests: XCTestCase {
     let actualNames = Set(lodges?.compactMap { $0.name } ?? [])
 
     XCTAssertEqual(actualNames, expectedLodges,
-                   "SNAPSHOT: Epic Waters has exactly 7 lodges with these names")
+                   "SNAPSHOT: Bend Fly Shop has exactly 1 lodge with these names")
   }
 
   /// The total count of lodges
@@ -76,28 +70,27 @@ final class ConfigurationSnapshotTests: XCTestCase {
     let fetch: NSFetchRequest<Lodge> = Lodge.fetchRequest()
     let count = (try? context.count(for: fetch)) ?? 0
 
-    XCTAssertEqual(count, 7,
-                   "SNAPSHOT: Epic Waters has exactly 7 lodges")
+    XCTAssertEqual(count, 1,
+                   "SNAPSHOT: Bend Fly Shop has exactly 1 lodge")
   }
 
   /// The default lodge used in TripFormView
   func testSnapshot_defaultLodge() {
-    XCTAssertEqual("Copper Bay Lodge", "Copper Bay Lodge",
-                   "SNAPSHOT: Default lodge is 'Copper Bay Lodge'")
+    XCTAssertEqual("Bend Fly Shop", "Bend Fly Shop",
+                   "SNAPSHOT: Default lodge is 'Bend Fly Shop'")
   }
 
   // ============================================================================
   // MARK: - RIVER CONFIGURATION SNAPSHOT
   // ============================================================================
 
-  /// All river short names available for Epic Waters
+  /// All river short names available for Bend Fly Shop
   func testSnapshot_allRiverNames() {
     let expectedRivers: Set<String> = [
-      "Copper",
-      "Pallant",
-      "Yakoun",
-      "Tlell",
-      "Mamin"
+      "Deschutes",
+      "Metolius",
+      "Crooked",
+      "Fall"
     ]
 
     let locator = RiverLocator.shared
@@ -105,101 +98,81 @@ final class ConfigurationSnapshotTests: XCTestCase {
     // Verify each river is found at its first coordinate
     var foundRivers: Set<String> = []
 
-    // Test Copper Creek
-    let copperLoc = CLLocation(latitude: 53.16219534, longitude: -131.80042844)
-    let copper = locator.riverName(near: copperLoc, forCommunity: "Epic Waters")
-    if !copper.isEmpty { foundRivers.insert(copper) }
+    // Test Deschutes River
+    let deschutesBenchmarkLoc = CLLocation(latitude: 44.06, longitude: -121.31)
+    let deschutes = locator.riverName(near: deschutesBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    if !deschutes.isEmpty { foundRivers.insert(deschutes) }
 
-    // Test Pallant Creek
-    let pallantLoc = CLLocation(latitude: 53.05020396, longitude: -132.02722038)
-    let pallant = locator.riverName(near: pallantLoc, forCommunity: "Epic Waters")
-    if !pallant.isEmpty { foundRivers.insert(pallant) }
+    // Test Metolius River
+    let metoliusBenchmarkLoc = CLLocation(latitude: 44.43, longitude: -121.64)
+    let metolius = locator.riverName(near: metoliusBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    if !metolius.isEmpty { foundRivers.insert(metolius) }
 
-    // Test Yakoun River
-    let yakounLoc = CLLocation(latitude: 53.67145964, longitude: -132.20484788)
-    let yakoun = locator.riverName(near: yakounLoc, forCommunity: "Epic Waters")
-    if !yakoun.isEmpty { foundRivers.insert(yakoun) }
+    // Test Crooked River
+    let crookedBenchmarkLoc = CLLocation(latitude: 44.30, longitude: -120.88)
+    let crooked = locator.riverName(near: crookedBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    if !crooked.isEmpty { foundRivers.insert(crooked) }
 
-    // Test Tlell River
-    let tlellLoc = CLLocation(latitude: 53.56602409, longitude: -131.93391551)
-    let tlell = locator.riverName(near: tlellLoc, forCommunity: "Epic Waters")
-    if !tlell.isEmpty { foundRivers.insert(tlell) }
-
-    // Test Mamin River
-    let maminLoc = CLLocation(latitude: 53.62235570, longitude: -132.30535108)
-    let mamin = locator.riverName(near: maminLoc, forCommunity: "Epic Waters")
-    if !mamin.isEmpty { foundRivers.insert(mamin) }
+    // Test Fall River
+    let fallBenchmarkLoc = CLLocation(latitude: 43.78, longitude: -121.43)
+    let fall = locator.riverName(near: fallBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    if !fall.isEmpty { foundRivers.insert(fall) }
 
     XCTAssertEqual(foundRivers, expectedRivers,
-                   "SNAPSHOT: Epic Waters has exactly 5 rivers")
+                   "SNAPSHOT: Bend Fly Shop has exactly 4 rivers")
   }
 
   /// River count
   func testSnapshot_riverCount() {
-    XCTAssertEqual(5, 5,
-                   "SNAPSHOT: Epic Waters has exactly 5 rivers")
+    XCTAssertEqual(4, 4,
+                   "SNAPSHOT: Bend Fly Shop has exactly 4 rivers")
   }
 
   /// River display names used in ReportFormView picker (short names)
   func testSnapshot_riverPickerValues() {
-    let expectedPickerValues = ["Pallant", "Copper", "Mamin", "Yakoun", "Tlell"]
+    let expectedPickerValues = ["Deschutes", "Metolius", "Crooked", "Fall"]
 
-    XCTAssertEqual(expectedPickerValues.count, 5,
-                   "SNAPSHOT: ReportFormView river picker has 5 options")
+    XCTAssertEqual(expectedPickerValues.count, 4,
+                   "SNAPSHOT: ReportFormView river picker has 4 options")
 
-    // Verify default is Pallant
-    XCTAssertEqual(expectedPickerValues.first, "Pallant",
-                   "SNAPSHOT: Default river in picker is 'Pallant'")
+    // Verify default is Deschutes
+    XCTAssertEqual(expectedPickerValues.first, "Deschutes",
+                   "SNAPSHOT: Default river in picker is 'Deschutes'")
   }
 
   // ============================================================================
   // MARK: - RIVER COORDINATES SNAPSHOT
   // ============================================================================
 
-  /// Copper Creek coordinate count and bounds
-  func testSnapshot_copperCreekCoordinates() {
+  /// Deschutes River coordinate count
+  func testSnapshot_deschuteRiverCoordinates() {
     // From RiverCoordinates.swift
     let coordCount = 11
-    let latMin = 53.10714048
-    let latMax = 53.16219534
-    let lonMin = -131.86801358
-    let lonMax = -131.80042844
-
-    XCTAssertEqual(coordCount, 11, "SNAPSHOT: Copper Creek has 11 coordinate points")
-    XCTAssertEqual(latMin, 53.10714048, accuracy: 0.0001, "SNAPSHOT: Copper Creek min latitude")
-    XCTAssertEqual(latMax, 53.16219534, accuracy: 0.0001, "SNAPSHOT: Copper Creek max latitude")
-    XCTAssertEqual(lonMin, -131.86801358, accuracy: 0.0001, "SNAPSHOT: Copper Creek min longitude")
-    XCTAssertEqual(lonMax, -131.80042844, accuracy: 0.0001, "SNAPSHOT: Copper Creek max longitude")
+    XCTAssertEqual(coordCount, 11, "SNAPSHOT: Deschutes River has 11 coordinate points")
   }
 
-  /// Pallant Creek coordinate count
-  func testSnapshot_pallantCreekCoordinates() {
+  /// Metolius River coordinate count
+  func testSnapshot_metoliusRiverCoordinates() {
     let coordCount = 7
-    XCTAssertEqual(coordCount, 7, "SNAPSHOT: Pallant Creek has 7 coordinate points")
+    XCTAssertEqual(coordCount, 7, "SNAPSHOT: Metolius River has 7 coordinate points")
   }
 
-  /// Yakoun River coordinate count (largest river)
-  func testSnapshot_yakounRiverCoordinates() {
+  /// Crooked River coordinate count
+  func testSnapshot_crookedRiverCoordinates() {
     let coordCount = 42
-    XCTAssertEqual(coordCount, 42, "SNAPSHOT: Yakoun River has 42 coordinate points (largest)")
+    XCTAssertEqual(coordCount, 42, "SNAPSHOT: Crooked River has 42 coordinate points")
   }
 
-  /// Tlell River coordinate count
-  func testSnapshot_tlellRiverCoordinates() {
+  /// Fall River coordinate count
+  func testSnapshot_fallRiverCoordinates() {
     let coordCount = 15
-    XCTAssertEqual(coordCount, 15, "SNAPSHOT: Tlell River has 15 coordinate points")
-  }
-
-  /// Mamin River coordinate count
-  func testSnapshot_maminRiverCoordinates() {
-    let coordCount = 14
-    XCTAssertEqual(coordCount, 14, "SNAPSHOT: Mamin River has 14 coordinate points")
+    XCTAssertEqual(coordCount, 15, "SNAPSHOT: Fall River has 15 coordinate points")
   }
 
   /// Total coordinate count across all rivers
   func testSnapshot_totalCoordinateCount() {
-    let total = 11 + 7 + 42 + 15 + 14  // 89
-    XCTAssertEqual(total, 89, "SNAPSHOT: Total coordinate points across all rivers is 89")
+    let total = 11 + 7 + 42 + 15  // 75
+    XCTAssertEqual(total, 75, "SNAPSHOT: Total coordinate points across all rivers is 75")
   }
 
   /// Max distance threshold for all rivers
@@ -215,19 +188,19 @@ final class ConfigurationSnapshotTests: XCTestCase {
 
   /// Weather location used in AnglerTripPrepView
   func testSnapshot_weatherLocation() {
-    XCTAssertEqual("Haida Gwaii", "Haida Gwaii",
-                   "SNAPSHOT: Weather forecast location is 'Haida Gwaii'")
+    XCTAssertEqual("Bend Oregon", "Bend Oregon",
+                   "SNAPSHOT: Weather forecast location is 'Bend Oregon'")
   }
 
-  /// Geographic region (approximate center of Haida Gwaii)
+  /// Geographic region (approximate center of Bend Oregon)
   func testSnapshot_geographicRegion() {
-    let approxCenterLat = 53.3  // Approximate center of configured rivers
-    let approxCenterLon = -132.0
+    let approxCenterLat = 44.06  // Approximate center of configured rivers
+    let approxCenterLon = -121.31
 
-    XCTAssertEqual(approxCenterLat, 53.3, accuracy: 0.5,
-                   "SNAPSHOT: Haida Gwaii approximate center latitude")
-    XCTAssertEqual(approxCenterLon, -132.0, accuracy: 0.5,
-                   "SNAPSHOT: Haida Gwaii approximate center longitude")
+    XCTAssertEqual(approxCenterLat, 44.06, accuracy: 0.5,
+                   "SNAPSHOT: Bend Oregon approximate center latitude")
+    XCTAssertEqual(approxCenterLon, -121.31, accuracy: 0.5,
+                   "SNAPSHOT: Bend Oregon approximate center longitude")
   }
 
   // ============================================================================
@@ -309,15 +282,15 @@ final class ConfigurationSnapshotTests: XCTestCase {
   }
 
   // ============================================================================
-  // MARK: - GEAR RECOMMENDATIONS SNAPSHOT (Haida Gwaii Specific)
+  // MARK: - GEAR RECOMMENDATIONS SNAPSHOT (Bend Oregon Specific)
   // ============================================================================
 
-  /// Gear is location-specific (Haida Gwaii)
+  /// Gear is location-specific (Bend Oregon)
   func testSnapshot_gearIsLocationSpecific() {
-    // AnglerRecommendedGearView contains Haida Gwaii-specific gear recommendations
-    // "Haida Gwaii rivers are heavily forested with low-hanging branches"
+    // AnglerRecommendedGearView contains Bend Oregon-specific gear recommendations
+    // "Central Oregon rivers vary from spring creeks to larger tailwaters. Match your rod selection to the water you'll be fishing."
     XCTAssertTrue(true,
-                  "SNAPSHOT: Gear recommendations are specific to Haida Gwaii terrain")
+                  "SNAPSHOT: Gear recommendations are specific to Bend Oregon terrain")
   }
 
   /// Recommended spey rod sizes
@@ -371,27 +344,20 @@ final class ConfigurationSnapshotTests: XCTestCase {
     let summary = """
 
     ╔══════════════════════════════════════════════════════════════╗
-    ║           EPIC WATERS CONFIGURATION SNAPSHOT                 ║
+    ║         BEND FLY SHOP CONFIGURATION SNAPSHOT                 ║
     ╠══════════════════════════════════════════════════════════════╣
-    ║ Community Name:     Epic Waters                              ║
-    ║ Tagline:            Intelligent Conservation                 ║
-    ║ Weather Location:   Haida Gwaii                              ║
+    ║ Community Name:     Bend Fly Shop                            ║
+    ║ Tagline:            Your Fly Fishing Destination             ║
+    ║ Weather Location:   Bend Oregon                              ║
     ╠══════════════════════════════════════════════════════════════╣
-    ║ LODGES (7 total):                                            ║
-    ║   • Bulkley Basecamp                                         ║
-    ║   • Babine Steelhead Lodge                                   ║
-    ║   • Copper Bay Lodge (default)                               ║
-    ║   • Frontier Steelhead Experience                            ║
-    ║   • Epic Narrows Musky Camp                                  ║
-    ║   • Labrador Heli-Fishing Atlantic Salmon                    ║
-    ║   • Togiak Epic Spey                                         ║
+    ║ LODGES (1 total):                                            ║
+    ║   • Bend Fly Shop (default)                                  ║
     ╠══════════════════════════════════════════════════════════════╣
-    ║ RIVERS (5 total, 89 coordinate points):                      ║
-    ║   • Copper Creek    (11 points, maxDist: 10km)               ║
-    ║   • Pallant Creek   (7 points,  maxDist: 10km)               ║
-    ║   • Yakoun River    (42 points, maxDist: 10km)               ║
-    ║   • Tlell River     (15 points, maxDist: 10km)               ║
-    ║   • Mamin River     (14 points, maxDist: 10km)               ║
+    ║ RIVERS (4 total, 75 coordinate points):                      ║
+    ║   • Deschutes River (11 points, maxDist: 10km)               ║
+    ║   • Metolius River  (7 points,  maxDist: 10km)               ║
+    ║   • Crooked River   (42 points, maxDist: 10km)               ║
+    ║   • Fall River      (15 points, maxDist: 10km)               ║
     ╠══════════════════════════════════════════════════════════════╣
     ║ CATCH REPORT OPTIONS:                                        ║
     ║   Species:  Steelhead, Salmon, Trout                         ║

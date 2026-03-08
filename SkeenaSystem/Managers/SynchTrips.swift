@@ -1,6 +1,6 @@
 //
 // SynchTrips.swift
-// Epic Waters
+// Bend Fly Shop
 //
 // Synchronize trips between local Core Data and remote manage-trip API
 // Refactor: compose URL via API_BASE_URL + MANAGE_TRIP_URL (Info.plist)
@@ -422,7 +422,7 @@ public final class SynchTrips {
         lf.predicate = NSPredicate(format: "name ==[c] %@", lodgeName)
         if let lodge = try? ctx.fetch(lf).first {
           // Ensure the Lodge is linked to its Community (may be nil
-          // if the Lodge was created before seedEpicWatersIfNeeded ran).
+          // if the Lodge was created before seedCommunityIfNeeded ran).
           if lodge.community == nil {
             ensureLodgeHasCommunity(lodge, context: ctx)
           }
@@ -520,8 +520,8 @@ public final class SynchTrips {
   }
 
   /// If a Lodge has no Community relationship, look up (or create) the
-  /// "Epic Waters" Community and link it. This covers Lodges that were
-  /// created by a previous sync before seedEpicWatersIfNeeded had run.
+  /// "Bend Fly Shop" Community and link it. This covers Lodges that were
+  /// created by a previous sync before seedCommunityIfNeeded had run.
   private static func ensureLodgeHasCommunity(_ lodge: Lodge, context: NSManagedObjectContext) {
     let cf: NSFetchRequest<Community> = Community.fetchRequest()
     let communityName = AppEnvironment.shared.communityName

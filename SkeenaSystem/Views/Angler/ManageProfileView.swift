@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // ManageProfileView.swift
 //
 // Drop-in refactor:

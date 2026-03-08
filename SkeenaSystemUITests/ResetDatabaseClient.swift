@@ -56,7 +56,7 @@ public enum ResetDatabaseError: Error, LocalizedError {
 
 public final class ResetDatabaseClient {
     /// Public endpoint for the reset function
-    private let endpoint = "https://rowytjuewalinlnlzysb.supabase.co/functions/v1/reset-database"
+    private let endpoint = "PLACEHOLDER_URL/functions/v1/reset-database"
     private let session: URLSession
 
     /// - Parameters:

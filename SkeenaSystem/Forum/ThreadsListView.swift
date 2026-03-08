@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 
 // ThreadsListView.swift
 import SwiftUI
@@ -22,7 +22,7 @@ struct ThreadsListView: View {
   var body: some View {
     ZStack { Color.black.ignoresSafeArea()
       VStack(spacing: 0) {
-        // --- Epic Waters Header ---
+        // --- Bend Fly Shop Header ---
         VStack(spacing: 6) {
           Spacer().frame(height: 12)
           Image(AppEnvironment.shared.appLogoAsset)

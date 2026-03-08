@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 
 import CoreData
 import CoreLocation
@@ -61,7 +61,7 @@ struct ReportFormView: View {
   }
 
   private func ensureCatchDefaults() {
-    if vm.river.isEmpty { vm.river = "Pallant" }
+    if vm.river.isEmpty { vm.river = "Deschutes" }
     if vm.species.isEmpty { vm.species = "Steelhead" }
     if vm.sex.isEmpty { vm.sex = "Female" }
     if vm.origin.isEmpty { vm.origin = "Wild" }
@@ -151,11 +151,10 @@ struct ReportFormView: View {
   @ViewBuilder private func catchDetailsSection() -> some View {
     Section(header: Text("Catch Details").foregroundColor(.white)) {
       Picker("River", selection: $vm.river) {
-        Text("Pallant").tag("Pallant") // first & default
-        Text("Copper").tag("Copper")
-        Text("Mamin").tag("Mamin") // new river
-        Text("Yakoun").tag("Yakoun")
-        Text("Tlell").tag("Tlell")
+        Text("Deschutes").tag("Deschutes")
+        Text("Metolius").tag("Metolius")
+        Text("Crooked").tag("Crooked")
+        Text("Fall").tag("Fall")
       }
       .pickerStyle(.segmented)
 

@@ -1,4 +1,4 @@
-// Epic Waters
+// Bend Fly Shop
 // CatchStoryService.swift
 //
 // Drop-in refactor:
@@ -7,7 +7,7 @@
 //   (both read from Info.plist, with safe normalization)
 //
 // Info.plist required keys:
-//   API_BASE_URL     e.g. "paxslufnrjjvvflgciir.supabase.co" OR "https://paxslufnrjjvvflgciir.supabase.co"
+//   API_BASE_URL     e.g. "your-project.supabase.co" OR "https://your-project.supabase.co"
 //   CATCH_STORY_URL  e.g. "/functions/v1/catch-story"  (recommended; must be a relative path)
 //
 // Notes:

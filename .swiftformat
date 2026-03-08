@@ -4,7 +4,7 @@
 --wraparguments before-first
 --wrapcollections before-first
 --stripunusedargs closure-only
---header "Epic Waters"
+--header "Bend Fly Shop"
 --ifdef no-indent
 --self init-only
 --modifierorder

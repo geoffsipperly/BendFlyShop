@@ -119,7 +119,7 @@ final class AnglerLandingViewTests: XCTestCase {
       "catch_reports": [
         {"catch_id":"c1","created_at":"2026-01-10T08:00:00Z","river":"Skeena","latitude":54.0,"longitude":-128.0,"photo_url":null,"notes":null},
         {"catch_id":"c3","created_at":"2026-01-20T12:00:00Z","river":"Copper","latitude":54.1,"longitude":-128.1,"photo_url":"https://example.com/photo.jpg","notes":"Big one"},
-        {"catch_id":"c2","created_at":"2026-01-15T10:30:00.500Z","river":"Bulkley","latitude":null,"longitude":null,"photo_url":null,"notes":null}
+        {"catch_id":"c2","created_at":"2026-01-15T10:30:00.500Z","river":"Deschutes","latitude":null,"longitude":null,"photo_url":null,"notes":null}
       ]
     }
     """.data(using: .utf8)!
@@ -180,7 +180,7 @@ final class AnglerLandingViewTests: XCTestCase {
     let json = """
     {"catch_reports":[
       {"catch_id":"c1","created_at":"2026-01-10T08:00:00Z","river":"Skeena","latitude":null,"longitude":null,"photo_url":null,"notes":null},
-      {"catch_id":"c2","created_at":"2026-01-15T10:00:00Z","river":"Bulkley","latitude":null,"longitude":null,"photo_url":null,"notes":null}
+      {"catch_id":"c2","created_at":"2026-01-15T10:00:00Z","river":"Deschutes","latitude":null,"longitude":null,"photo_url":null,"notes":null}
     ]}
     """.data(using: .utf8)!
     let reports = try! JSONDecoder().decode(DownloadResponse.self, from: json).catch_reports
