@@ -61,7 +61,7 @@ struct ReportFormView: View {
   }
 
   private func ensureCatchDefaults() {
-    if vm.river.isEmpty { vm.river = "Deschutes" }
+    if vm.river.isEmpty { vm.river = "Nehalem" }
     if vm.species.isEmpty { vm.species = "Steelhead" }
     if vm.sex.isEmpty { vm.sex = "Female" }
     if vm.origin.isEmpty { vm.origin = "Wild" }
@@ -151,10 +151,11 @@ struct ReportFormView: View {
   @ViewBuilder private func catchDetailsSection() -> some View {
     Section(header: Text("Catch Details").foregroundColor(.white)) {
       Picker("River", selection: $vm.river) {
-        Text("Deschutes").tag("Deschutes")
-        Text("Metolius").tag("Metolius")
-        Text("Crooked").tag("Crooked")
-        Text("Fall").tag("Fall")
+        Text("Nehalem").tag("Nehalem")
+        Text("Wilson").tag("Wilson")
+        Text("Trask").tag("Trask")
+        Text("Nestucca").tag("Nestucca")
+        Text("Kilchis").tag("Kilchis")
       }
       .pickerStyle(.segmented)
 

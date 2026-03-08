@@ -87,10 +87,11 @@ final class ConfigurationSnapshotTests: XCTestCase {
   /// All river short names available for Bend Fly Shop
   func testSnapshot_allRiverNames() {
     let expectedRivers: Set<String> = [
-      "Deschutes",
-      "Metolius",
-      "Crooked",
-      "Fall"
+      "Nehalem",
+      "Wilson",
+      "Trask",
+      "Nestucca",
+      "Kilchis"
     ]
 
     let locator = RiverLocator.shared
@@ -98,81 +99,92 @@ final class ConfigurationSnapshotTests: XCTestCase {
     // Verify each river is found at its first coordinate
     var foundRivers: Set<String> = []
 
-    // Test Deschutes River
-    let deschutesBenchmarkLoc = CLLocation(latitude: 44.06, longitude: -121.31)
-    let deschutes = locator.riverName(near: deschutesBenchmarkLoc, forCommunity: "Bend Fly Shop")
-    if !deschutes.isEmpty { foundRivers.insert(deschutes) }
+    // Test Nehalem River
+    let nehalemBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
+    let nehalem = locator.riverName(near: nehalemBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    if !nehalem.isEmpty { foundRivers.insert(nehalem) }
 
-    // Test Metolius River
-    let metoliusBenchmarkLoc = CLLocation(latitude: 44.43, longitude: -121.64)
-    let metolius = locator.riverName(near: metoliusBenchmarkLoc, forCommunity: "Bend Fly Shop")
-    if !metolius.isEmpty { foundRivers.insert(metolius) }
+    // Test Wilson River
+    let wilsonBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
+    let wilson = locator.riverName(near: wilsonBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    if !wilson.isEmpty { foundRivers.insert(wilson) }
 
-    // Test Crooked River
-    let crookedBenchmarkLoc = CLLocation(latitude: 44.30, longitude: -120.88)
-    let crooked = locator.riverName(near: crookedBenchmarkLoc, forCommunity: "Bend Fly Shop")
-    if !crooked.isEmpty { foundRivers.insert(crooked) }
+    // Test Trask River
+    let traskBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
+    let trask = locator.riverName(near: traskBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    if !trask.isEmpty { foundRivers.insert(trask) }
 
-    // Test Fall River
-    let fallBenchmarkLoc = CLLocation(latitude: 43.78, longitude: -121.43)
-    let fall = locator.riverName(near: fallBenchmarkLoc, forCommunity: "Bend Fly Shop")
-    if !fall.isEmpty { foundRivers.insert(fall) }
+    // Test Nestucca River
+    let nestuccaBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
+    let nestucca = locator.riverName(near: nestuccaBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    if !nestucca.isEmpty { foundRivers.insert(nestucca) }
+
+    // Test Kilchis River
+    let kilchisBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
+    let kilchis = locator.riverName(near: kilchisBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    if !kilchis.isEmpty { foundRivers.insert(kilchis) }
 
     XCTAssertEqual(foundRivers, expectedRivers,
-                   "SNAPSHOT: Bend Fly Shop has exactly 4 rivers")
+                   "SNAPSHOT: Bend Fly Shop has exactly 5 rivers")
   }
 
   /// River count
   func testSnapshot_riverCount() {
-    XCTAssertEqual(4, 4,
-                   "SNAPSHOT: Bend Fly Shop has exactly 4 rivers")
+    XCTAssertEqual(5, 5,
+                   "SNAPSHOT: Bend Fly Shop has exactly 5 rivers")
   }
 
   /// River display names used in ReportFormView picker (short names)
   func testSnapshot_riverPickerValues() {
-    let expectedPickerValues = ["Deschutes", "Metolius", "Crooked", "Fall"]
+    let expectedPickerValues = ["Nehalem", "Wilson", "Trask", "Nestucca", "Kilchis"]
 
-    XCTAssertEqual(expectedPickerValues.count, 4,
-                   "SNAPSHOT: ReportFormView river picker has 4 options")
+    XCTAssertEqual(expectedPickerValues.count, 5,
+                   "SNAPSHOT: ReportFormView river picker has 5 options")
 
-    // Verify default is Deschutes
-    XCTAssertEqual(expectedPickerValues.first, "Deschutes",
-                   "SNAPSHOT: Default river in picker is 'Deschutes'")
+    // Verify default is Nehalem
+    XCTAssertEqual(expectedPickerValues.first, "Nehalem",
+                   "SNAPSHOT: Default river in picker is 'Nehalem'")
   }
 
   // ============================================================================
   // MARK: - RIVER COORDINATES SNAPSHOT
   // ============================================================================
 
-  /// Deschutes River coordinate count
-  func testSnapshot_deschuteRiverCoordinates() {
+  /// Nehalem River coordinate count
+  func testSnapshot_nehalemRiverCoordinates() {
     // From RiverCoordinates.swift
-    let coordCount = 11
-    XCTAssertEqual(coordCount, 11, "SNAPSHOT: Deschutes River has 11 coordinate points")
+    let nehalemCoordinates = 1
+    XCTAssertEqual(nehalemCoordinates, 1, "SNAPSHOT: Nehalem River has 1 coordinate point")
   }
 
-  /// Metolius River coordinate count
-  func testSnapshot_metoliusRiverCoordinates() {
-    let coordCount = 7
-    XCTAssertEqual(coordCount, 7, "SNAPSHOT: Metolius River has 7 coordinate points")
+  /// Wilson River coordinate count
+  func testSnapshot_wilsonRiverCoordinates() {
+    let wilsonCoordinates = 1
+    XCTAssertEqual(wilsonCoordinates, 1, "SNAPSHOT: Wilson River has 1 coordinate point")
   }
 
-  /// Crooked River coordinate count
-  func testSnapshot_crookedRiverCoordinates() {
-    let coordCount = 42
-    XCTAssertEqual(coordCount, 42, "SNAPSHOT: Crooked River has 42 coordinate points")
+  /// Trask River coordinate count
+  func testSnapshot_traskRiverCoordinates() {
+    let traskCoordinates = 1
+    XCTAssertEqual(traskCoordinates, 1, "SNAPSHOT: Trask River has 1 coordinate point")
   }
 
-  /// Fall River coordinate count
-  func testSnapshot_fallRiverCoordinates() {
-    let coordCount = 15
-    XCTAssertEqual(coordCount, 15, "SNAPSHOT: Fall River has 15 coordinate points")
+  /// Nestucca River coordinate count
+  func testSnapshot_nestuccaRiverCoordinates() {
+    let nestuccaCoordinates = 1
+    XCTAssertEqual(nestuccaCoordinates, 1, "SNAPSHOT: Nestucca River has 1 coordinate point")
+  }
+
+  /// Kilchis River coordinate count
+  func testSnapshot_kilchisRiverCoordinates() {
+    let kilchisCoordinates = 1
+    XCTAssertEqual(kilchisCoordinates, 1, "SNAPSHOT: Kilchis River has 1 coordinate point")
   }
 
   /// Total coordinate count across all rivers
   func testSnapshot_totalCoordinateCount() {
-    let total = 11 + 7 + 42 + 15  // 75
-    XCTAssertEqual(total, 75, "SNAPSHOT: Total coordinate points across all rivers is 75")
+    let total = 1 + 1 + 1 + 1 + 1  // 5
+    XCTAssertEqual(total, 5, "SNAPSHOT: Total coordinate points across all rivers is 5")
   }
 
   /// Max distance threshold for all rivers
@@ -188,19 +200,19 @@ final class ConfigurationSnapshotTests: XCTestCase {
 
   /// Weather location used in AnglerTripPrepView
   func testSnapshot_weatherLocation() {
-    XCTAssertEqual("Bend Oregon", "Bend Oregon",
-                   "SNAPSHOT: Weather forecast location is 'Bend Oregon'")
+    XCTAssertEqual("Oregon Coast", "Oregon Coast",
+                   "SNAPSHOT: Weather forecast location is 'Oregon Coast'")
   }
 
-  /// Geographic region (approximate center of Bend Oregon)
+  /// Geographic region (approximate center of Oregon Coast / Tillamook)
   func testSnapshot_geographicRegion() {
-    let approxCenterLat = 44.06  // Approximate center of configured rivers
-    let approxCenterLon = -121.31
+    let approxCenterLat = 45.4562  // Approximate center of configured rivers
+    let approxCenterLon = -123.8426
 
-    XCTAssertEqual(approxCenterLat, 44.06, accuracy: 0.5,
-                   "SNAPSHOT: Bend Oregon approximate center latitude")
-    XCTAssertEqual(approxCenterLon, -121.31, accuracy: 0.5,
-                   "SNAPSHOT: Bend Oregon approximate center longitude")
+    XCTAssertEqual(approxCenterLat, 45.4562, accuracy: 0.5,
+                   "SNAPSHOT: Oregon Coast approximate center latitude")
+    XCTAssertEqual(approxCenterLon, -123.8426, accuracy: 0.5,
+                   "SNAPSHOT: Oregon Coast approximate center longitude")
   }
 
   // ============================================================================
@@ -282,15 +294,15 @@ final class ConfigurationSnapshotTests: XCTestCase {
   }
 
   // ============================================================================
-  // MARK: - GEAR RECOMMENDATIONS SNAPSHOT (Bend Oregon Specific)
+  // MARK: - GEAR RECOMMENDATIONS SNAPSHOT (Oregon Coast Specific)
   // ============================================================================
 
-  /// Gear is location-specific (Bend Oregon)
+  /// Gear is location-specific (Oregon Coast)
   func testSnapshot_gearIsLocationSpecific() {
-    // AnglerRecommendedGearView contains Bend Oregon-specific gear recommendations
-    // "Central Oregon rivers vary from spring creeks to larger tailwaters. Match your rod selection to the water you'll be fishing."
+    // AnglerRecommendedGearView contains Oregon Coast-specific gear recommendations
+    // "Oregon Coast rivers vary from tidal estuaries to forested mountain streams. Match your rod selection to the water you'll be fishing."
     XCTAssertTrue(true,
-                  "SNAPSHOT: Gear recommendations are specific to Bend Oregon terrain")
+                  "SNAPSHOT: Gear recommendations are specific to Oregon Coast terrain")
   }
 
   /// Recommended spey rod sizes
@@ -348,16 +360,17 @@ final class ConfigurationSnapshotTests: XCTestCase {
     ╠══════════════════════════════════════════════════════════════╣
     ║ Community Name:     Bend Fly Shop                            ║
     ║ Tagline:            Your Fly Fishing Destination             ║
-    ║ Weather Location:   Bend Oregon                              ║
+    ║ Weather Location:   Oregon Coast                             ║
     ╠══════════════════════════════════════════════════════════════╣
     ║ LODGES (1 total):                                            ║
     ║   • Bend Fly Shop (default)                                  ║
     ╠══════════════════════════════════════════════════════════════╣
-    ║ RIVERS (4 total, 75 coordinate points):                      ║
-    ║   • Deschutes River (11 points, maxDist: 10km)               ║
-    ║   • Metolius River  (7 points,  maxDist: 10km)               ║
-    ║   • Crooked River   (42 points, maxDist: 10km)               ║
-    ║   • Fall River      (15 points, maxDist: 10km)               ║
+    ║ RIVERS (5 total, 5 coordinate points):                       ║
+    ║   • Nehalem River  (1 point,  maxDist: 10km)                 ║
+    ║   • Wilson River   (1 point,  maxDist: 10km)                 ║
+    ║   • Trask River    (1 point,  maxDist: 10km)                 ║
+    ║   • Nestucca River (1 point,  maxDist: 10km)                 ║
+    ║   • Kilchis River  (1 point,  maxDist: 10km)                 ║
     ╠══════════════════════════════════════════════════════════════╣
     ║ CATCH REPORT OPTIONS:                                        ║
     ║   Species:  Steelhead, Salmon, Trout                         ║

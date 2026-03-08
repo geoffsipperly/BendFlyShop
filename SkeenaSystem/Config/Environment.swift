@@ -152,7 +152,7 @@ public final class AppEnvironment {
     public var defaultRiver: String {
         if let v = overrideDefaultRiver { return v }
         if let v = stringFromInfo("DEFAULT_RIVER"), !v.isEmpty { return v }
-        return lodgeRivers.first ?? "Deschutes"
+        return lodgeRivers.first ?? "Nehalem"
     }
 
     // MARK: - Logging configuration
@@ -322,25 +322,25 @@ public final class AppEnvironment {
 
     // MARK: - Location configuration
 
-    /// Forecast location name (e.g., "Bend Oregon"). Used by the extended forecast feature.
+    /// Forecast location name (e.g., "Oregon Coast"). Used by the extended forecast feature.
     public var forecastLocation: String {
         if let v = overrideForecastLocation { return v }
         if let v = stringFromInfo("FORECAST_LOCATION"), !v.isEmpty { return v }
-        return "Bend Oregon"
+        return "Oregon Coast"
     }
 
-    /// Default map center latitude (e.g., 44.06 for Bend, Oregon).
+    /// Default map center latitude (e.g., 45.4562 for Tillamook, Oregon).
     public var defaultMapLatitude: Double {
         if let v = overrideDefaultMapLatitude { return v }
         if let s = stringFromInfo("DEFAULT_MAP_LATITUDE"), let v = Double(s) { return v }
-        return 44.06
+        return 45.4562
     }
 
-    /// Default map center longitude (e.g., -121.31 for Bend, Oregon).
+    /// Default map center longitude (e.g., -123.8426 for Tillamook, Oregon).
     public var defaultMapLongitude: Double {
         if let v = overrideDefaultMapLongitude { return v }
         if let s = stringFromInfo("DEFAULT_MAP_LONGITUDE"), let v = Double(s) { return v }
-        return -121.31
+        return -123.8426
     }
 
     // MARK: - Image configuration
@@ -352,7 +352,7 @@ public final class AppEnvironment {
         return 0.85
     }
 
-    /// River names available for this lodge (e.g., "Deschutes River", "Metolius River").
+    /// River names available for this lodge (e.g., "Nehalem River", "Wilson River").
     /// Used to build river condition tiles. Names are sent as-is to the river-conditions API.
     public var lodgeRivers: [String] {
         if let v = overrideLodgeRivers { return v }
@@ -361,7 +361,7 @@ public final class AppEnvironment {
                 .map { $0.trimmingCharacters(in: .whitespaces) }
                 .filter { !$0.isEmpty }
         }
-        return ["Deschutes River", "Metolius River", "Crooked River", "Fall River"]
+        return ["Nehalem River", "Wilson River", "Trask River", "Nestucca River", "Kilchis River"]
     }
 
     // MARK: - Fish detection ML calibration

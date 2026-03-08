@@ -3,7 +3,7 @@
 //
 // Unit tests for the FORECAST_LOCATION configuration variable:
 // verifies AppEnvironment.forecastLocation reads from config,
-// supports runtime override, and falls back to "Bend Oregon".
+// supports runtime override, and falls back to "Oregon Coast".
 
 import XCTest
 @testable import SkeenaSystem
@@ -26,13 +26,13 @@ final class ForecastLocationConfigTests: XCTestCase {
 
   // MARK: - Default Value
 
-  func testForecastLocation_defaultsToBendOregon() {
+  func testForecastLocation_defaultsToOregonCoast() {
     // When no override is set, the value should come from Info.plist (xcconfig)
-    // or fall back to "Bend Oregon"
+    // or fall back to "Oregon Coast"
     let location = AppEnvironment.shared.forecastLocation
     XCTAssertFalse(location.isEmpty, "Forecast location should never be empty")
-    XCTAssertEqual(location, "Bend Oregon",
-                   "Default forecast location should be 'Bend Oregon'")
+    XCTAssertEqual(location, "Oregon Coast",
+                   "Default forecast location should be 'Oregon Coast'")
   }
 
   // MARK: - Override
@@ -54,7 +54,7 @@ final class ForecastLocationConfigTests: XCTestCase {
     XCTAssertEqual(AppEnvironment.shared.forecastLocation, "Smithers")
 
     AppEnvironment.shared.overrideForecastLocation = nil
-    XCTAssertEqual(AppEnvironment.shared.forecastLocation, "Bend Oregon",
+    XCTAssertEqual(AppEnvironment.shared.forecastLocation, "Oregon Coast",
                    "Clearing override should restore default value")
   }
 
@@ -70,9 +70,9 @@ final class ForecastLocationConfigTests: XCTestCase {
 
   func testForecastLocation_matchesWeatherLocationSnapshot() {
     // This ensures the new configurable FORECAST_LOCATION matches the
-    // previously hardcoded "Bend Oregon" value from ConfigurationSnapshotTests
+    // previously hardcoded "Oregon Coast" value from ConfigurationSnapshotTests
     let location = AppEnvironment.shared.forecastLocation
-    XCTAssertEqual(location, "Bend Oregon",
+    XCTAssertEqual(location, "Oregon Coast",
                    "FORECAST_LOCATION should match the previously hardcoded weather location")
   }
 }

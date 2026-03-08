@@ -3,7 +3,7 @@
 //  River / Bend Fly Shop
 //
 //  Uses coordinate arrays defined in RiverCoordinates.swift
-//  (e.g. deschutesCoordinates, metoliusCoordinates, etc.)
+//  (e.g. nehalemCoordinates, wilsonCoordinates, etc.)
 //
 
 import Foundation
@@ -21,7 +21,7 @@ struct RiverDefinition {
   let maxDistanceKm: Double      // max distance from ANY point to count as on this river
 
   /// The river's base name with water-body suffixes stripped
-  /// (e.g. "Deschutes River" → "Deschutes", "Crooked River" → "Crooked").
+  /// (e.g. "Nehalem River" → "Nehalem", "Kilchis River" → "Kilchis").
   var shortName: String {
     let suffixes = [" Creek", " River", " Lake", " Stream"]
     for suffix in suffixes where name.hasSuffix(suffix) {
@@ -38,37 +38,44 @@ final class RiverLocator {
 
   // MARK: - Dataset
 
-  /// Bend, Oregon rivers.
+  /// Oregon Coast / Tillamook rivers.
   /// Coordinate arrays are defined in RiverCoordinates.swift.
   /// Replace placeholder coordinates with real KML spine data for accuracy.
   private let rivers: [RiverDefinition] = [
-    // Bend Fly Shop – Central Oregon
+    // Bend Fly Shop – Oregon Coast
 
     RiverDefinition(
-      name: "Deschutes River",
+      name: "Nehalem River",
       communityID: AppEnvironment.shared.communityName,
-      coordinates: deschutesCoordinates,
+      coordinates: nehalemCoordinates,
       maxDistanceKm: 10
     ),
 
     RiverDefinition(
-      name: "Metolius River",
+      name: "Wilson River",
       communityID: AppEnvironment.shared.communityName,
-      coordinates: metoliusCoordinates,
+      coordinates: wilsonCoordinates,
       maxDistanceKm: 10
     ),
 
     RiverDefinition(
-      name: "Crooked River",
+      name: "Trask River",
       communityID: AppEnvironment.shared.communityName,
-      coordinates: crookedCoordinates,
+      coordinates: traskCoordinates,
       maxDistanceKm: 10
     ),
 
     RiverDefinition(
-      name: "Fall River",
+      name: "Nestucca River",
       communityID: AppEnvironment.shared.communityName,
-      coordinates: fallriverCoordinates,
+      coordinates: nestuccaCoordinates,
+      maxDistanceKm: 10
+    ),
+
+    RiverDefinition(
+      name: "Kilchis River",
+      communityID: AppEnvironment.shared.communityName,
+      coordinates: kilchisCoordinates,
       maxDistanceKm: 10
     )
   ]

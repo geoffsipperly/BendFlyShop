@@ -124,7 +124,7 @@ struct GearChecklist: View {
               .font(.footnote)
           }
 
-          Text("Central Oregon offers diverse rivers each with unique character. The equipment below is tailored to the conditions you'll encounter.")
+          Text("The Oregon Coast offers diverse rivers each with unique character. The equipment below is tailored to the conditions you'll encounter.")
             .foregroundColor(.white)
             .font(.body)
             .italic()
@@ -150,7 +150,7 @@ struct GearChecklist: View {
             .font(.headline.weight(.semibold))
             .foregroundColor(.blue)
 
-          Text("Central Oregon rivers vary from spring creeks to larger tailwaters. Match your rod selection to the water you'll be fishing.")
+          Text("Oregon Coast rivers vary from tidal estuaries to forested mountain streams. Match your rod selection to the water you'll be fishing.")
             .foregroundColor(.white)
             .font(.subheadline)
 

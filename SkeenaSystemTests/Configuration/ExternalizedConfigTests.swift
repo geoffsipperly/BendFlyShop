@@ -75,12 +75,12 @@ final class ExternalizedConfigTests: XCTestCase {
     // To test the lodgeRivers fallback, we must override defaultRiver to nil
     // AND ensure the DEFAULT_RIVER Info.plist key is bypassed.
     // Since we can't unset Info.plist keys at runtime, we test the override chain:
-    // overrideDefaultRiver → DEFAULT_RIVER key → lodgeRivers.first → "Deschutes"
+    // overrideDefaultRiver → DEFAULT_RIVER key → lodgeRivers.first → "Nehalem"
     env.overrideDefaultRiver = nil
     let river = env.defaultRiver
-    // In test environment, DEFAULT_RIVER is set to "Deschutes" via DevTEST.xcconfig,
-    // so it should resolve to "Deschutes". This confirms the xcconfig → Info.plist chain works.
-    XCTAssertEqual(river, "Deschutes",
+    // In test environment, DEFAULT_RIVER is set to "Nehalem" via DevTEST.xcconfig,
+    // so it should resolve to "Nehalem". This confirms the xcconfig → Info.plist chain works.
+    XCTAssertEqual(river, "Nehalem",
                    "Should resolve to DEFAULT_RIVER from xcconfig when no override set")
   }
 

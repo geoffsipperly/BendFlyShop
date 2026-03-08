@@ -197,8 +197,8 @@ public enum BCClassifiedWaters {
 
   fileprivate static func ocrFixWater(_ s: String) -> String {
     var x = s
-    x = x.replacingOccurrences(of: "Dschutes", with: "Deschutes")
-    x = x.replacingOccurrences(of: "Morice", with: "Morice")
+    x = x.replacingOccurrences(of: "Nehaiem", with: "Nehalem")
+    x = x.replacingOccurrences(of: "Nestueca", with: "Nestucca")
     return x.trimmingCharacters(in: CharacterSet.whitespaces)
   }
 

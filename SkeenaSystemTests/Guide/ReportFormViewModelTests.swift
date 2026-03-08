@@ -29,7 +29,7 @@ final class ReportFormViewModelTests: XCTestCase {
 
   /// Fills all required fields with valid values so `isValid` returns true.
   private func fillAllRequiredFields() {
-    vm.river = "Deschutes"
+    vm.river = "Nehalem"
     vm.species = "Steelhead"
     vm.sex = "Male"
     vm.origin = "Wild"
@@ -208,7 +208,7 @@ final class ReportFormViewModelTests: XCTestCase {
   }
 
   func testInitialState_defaultRiver() {
-    XCTAssertEqual(vm.river, "Deschutes")
+    XCTAssertEqual(vm.river, "Nehalem")
   }
 
   func testInitialState_defaultTactic() {

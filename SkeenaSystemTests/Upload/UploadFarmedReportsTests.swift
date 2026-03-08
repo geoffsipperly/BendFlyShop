@@ -177,32 +177,32 @@ final class UploadFarmedReportsTests: XCTestCase {
 
   // MARK: - River Resolution Tests
 
-  func testResolveRiverName_nearDeschutesRiver_returnsDeschutes() {
-    // Placeholder coordinate for Deschutes River in RiverCoordinates.swift
-    let river = UploadFarmedReports.resolveRiverName(lat: 44.0582, lon: -121.3153)
-    XCTAssertEqual(river, "Deschutes")
+  func testResolveRiverName_nearNehalemRiver_returnsNehalem() {
+    // Placeholder coordinate for Nehalem River in RiverCoordinates.swift
+    let river = UploadFarmedReports.resolveRiverName(lat: 45.7060, lon: -123.8810)
+    XCTAssertEqual(river, "Nehalem")
   }
 
-  func testResolveRiverName_nearMetoliusRiver_returnsMetolius() {
-    // Placeholder coordinate for Metolius River in RiverCoordinates.swift
-    let river = UploadFarmedReports.resolveRiverName(lat: 44.5120, lon: -121.6300)
-    XCTAssertEqual(river, "Metolius")
+  func testResolveRiverName_nearWilsonRiver_returnsWilson() {
+    // Placeholder coordinate for Wilson River in RiverCoordinates.swift
+    let river = UploadFarmedReports.resolveRiverName(lat: 45.4730, lon: -123.7350)
+    XCTAssertEqual(river, "Wilson")
   }
 
-  func testResolveRiverName_nearCrookedRiver_returnsCrooked() {
-    // Placeholder coordinate for Crooked River in RiverCoordinates.swift
-    let river = UploadFarmedReports.resolveRiverName(lat: 44.2970, lon: -121.1960)
-    XCTAssertEqual(river, "Crooked")
+  func testResolveRiverName_nearTraskRiver_returnsTrask() {
+    // Placeholder coordinate for Trask River in RiverCoordinates.swift
+    let river = UploadFarmedReports.resolveRiverName(lat: 45.4100, lon: -123.7200)
+    XCTAssertEqual(river, "Trask")
   }
 
-  func testResolveRiverName_nearFallRiver_returnsFall() {
-    // Placeholder coordinate for Fall River in RiverCoordinates.swift
+  func testResolveRiverName_nearNestuccaRiver_returnsNestucca() {
+    // Placeholder coordinate for Nestucca River in RiverCoordinates.swift
     let river = UploadFarmedReports.resolveRiverName(lat: 43.7830, lon: -121.6370)
-    XCTAssertEqual(river, "Fall")
+    XCTAssertEqual(river, "Nestucca")
   }
 
   func testResolveRiverName_farFromAllRivers_returnsDefaultRiver() {
-    // Portland, OR — far from any Central Oregon river
+    // Portland, OR — far from any Oregon Coast river
     let river = UploadFarmedReports.resolveRiverName(lat: 45.5152, lon: -122.6784)
     let expected = AppEnvironment.shared.defaultRiver
     XCTAssertEqual(river, expected,

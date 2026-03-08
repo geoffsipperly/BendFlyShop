@@ -18,11 +18,11 @@ final class LodgeRiversConfigTests: XCTestCase {
 
   // MARK: - Default Value
 
-  func testLodgeRivers_defaultsToFourRivers() {
+  func testLodgeRivers_defaultsToFiveRivers() {
     let rivers = AppEnvironment.shared.lodgeRivers
-    XCTAssertEqual(rivers.count, 4, "Default should have 4 rivers")
+    XCTAssertEqual(rivers.count, 5, "Default should have 5 rivers")
     XCTAssertEqual(rivers, [
-      "Deschutes River", "Metolius River", "Crooked River", "Fall River"
+      "Nehalem River", "Wilson River", "Trask River", "Nestucca River", "Kilchis River"
     ])
   }
 
@@ -43,7 +43,7 @@ final class LodgeRiversConfigTests: XCTestCase {
     XCTAssertEqual(AppEnvironment.shared.lodgeRivers.count, 1)
 
     AppEnvironment.shared.overrideLodgeRivers = nil
-    XCTAssertEqual(AppEnvironment.shared.lodgeRivers.count, 4,
+    XCTAssertEqual(AppEnvironment.shared.lodgeRivers.count, 5,
                    "Clearing override should restore default value")
   }
 

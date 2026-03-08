@@ -10,9 +10,9 @@
 // MARK: - Backend & Authentication
 // ──────────────────────────────────────────────
 
-SUPABASE_PROJECT_URL = PLACEHOLDER_URL
-API_BASE_URL = PLACEHOLDER_HOST
-SUPABASE_ANON_KEY = PLACEHOLDER_ANON_KEY
+SUPABASE_PROJECT_URL = https://zdkhojusacwhiiqisjol.supabase.co
+API_BASE_URL = zdkhojusacwhiiqisjol.supabase.co
+SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpka2hvanVzYWN3aGlpcWlzam9sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MjMwMTEsImV4cCI6MjA4ODM5OTAxMX0.GuUaChAvq-uSLYEQoZe6yB_ZddzMdcEar4RzCbx6JrE
 LOG_LEVEL = error
 
 // ──────────────────────────────────────────────
@@ -71,12 +71,12 @@ COMMUNITY_TAGLINE = Your Fly Fishing Destination
 // MARK: - Location & Geography
 // ──────────────────────────────────────────────
 
-DEFAULT_RIVER = Deschutes
-LODGE_RIVERS = Deschutes River,Metolius River,Crooked River,Fall River
-FORECAST_LOCATION = Bend Oregon
-FORECAST_NOTES = Rivers in Central Oregon with varying conditions. Check local flow gauges for current levels.
-DEFAULT_MAP_LATITUDE = 44.06
-DEFAULT_MAP_LONGITUDE = -121.31
+DEFAULT_RIVER = Nehalem
+LODGE_RIVERS = Nehalem River,Wilson River,Trask River,Nestucca River,Kilchis River
+FORECAST_LOCATION = Oregon Coast
+FORECAST_NOTES = Rivers on the Oregon Coast near Tillamook with varying conditions. Check local flow gauges for current levels.
+DEFAULT_MAP_LATITUDE = 45.4562
+DEFAULT_MAP_LONGITUDE = -123.8426
 
 // ──────────────────────────────────────────────
 // MARK: - Maps

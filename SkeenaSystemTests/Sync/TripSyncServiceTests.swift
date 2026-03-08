@@ -183,7 +183,7 @@ final class TripSyncServiceTests: XCTestCase {
 
     let license = ClassifiedWaterLicense(context: context)
     license.licNumber = "CWL-001"
-    license.water = "Deschutes River"
+    license.water = "Nehalem River"
     license.validFrom = Date()
     license.validTo = Date().addingTimeInterval(86400 * 7) // 7 days
     license.client = client

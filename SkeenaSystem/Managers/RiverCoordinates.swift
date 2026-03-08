@@ -1,28 +1,33 @@
 //
 //  RiverCoordinates.swift
-//  Placeholder coordinates for Bend, Oregon rivers.
+//  Placeholder coordinates for Oregon Coast / Tillamook rivers.
 //
 //  Replace these with real GPS spine data from KML files for accurate river detection.
 //
 
 import CoreLocation
 
-// Deschutes River – placeholder center point (replace with real spine data)
-let deschutesCoordinates: [CLLocationCoordinate2D] = [
-  CLLocationCoordinate2D(latitude: 44.0582, longitude: -121.3153)
+// Nehalem River – placeholder center point (replace with real spine data)
+let nehalemCoordinates: [CLLocationCoordinate2D] = [
+  CLLocationCoordinate2D(latitude: 45.7060, longitude: -123.8810)
 ]
 
-// Metolius River – placeholder center point (replace with real spine data)
-let metoliusCoordinates: [CLLocationCoordinate2D] = [
-  CLLocationCoordinate2D(latitude: 44.5120, longitude: -121.6300)
+// Wilson River – placeholder center point (replace with real spine data)
+let wilsonCoordinates: [CLLocationCoordinate2D] = [
+  CLLocationCoordinate2D(latitude: 45.4730, longitude: -123.7350)
 ]
 
-// Crooked River – placeholder center point (replace with real spine data)
-let crookedCoordinates: [CLLocationCoordinate2D] = [
-  CLLocationCoordinate2D(latitude: 44.2970, longitude: -121.1960)
+// Trask River – placeholder center point (replace with real spine data)
+let traskCoordinates: [CLLocationCoordinate2D] = [
+  CLLocationCoordinate2D(latitude: 45.4100, longitude: -123.7200)
 ]
 
-// Fall River – placeholder center point (replace with real spine data)
-let fallriverCoordinates: [CLLocationCoordinate2D] = [
-  CLLocationCoordinate2D(latitude: 43.7830, longitude: -121.6370)
+// Nestucca River – placeholder center point (replace with real spine data)
+let nestuccaCoordinates: [CLLocationCoordinate2D] = [
+  CLLocationCoordinate2D(latitude: 45.1870, longitude: -123.8870)
+]
+
+// Kilchis River – placeholder center point (replace with real spine data)
+let kilchisCoordinates: [CLLocationCoordinate2D] = [
+  CLLocationCoordinate2D(latitude: 45.4850, longitude: -123.7900)
 ]

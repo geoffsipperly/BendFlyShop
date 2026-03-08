@@ -610,7 +610,7 @@ private struct TripEditForm: View {
               ),
               content: {
                 VStack(spacing: 8) {
-                  TextField("Water (e.g., Deschutes River)", text: Binding(
+                  TextField("Water (e.g., Nehalem River)", text: Binding(
                     get: { newWater[id, default: "" ] },
                     set: {
                       newWater[id] = $0

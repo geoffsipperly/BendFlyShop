@@ -26,7 +26,7 @@ struct AnglerRecommendedGearView: View {
 
     GearSection(
       title: "Spey Rods: Recommended to bring",
-      description: "Central Oregon rivers vary from spring creeks to larger tailwaters. Match your rod selection to the water you'll be fishing.",
+      description: "Oregon Coast rivers vary from tidal estuaries to forested mountain streams. Match your rod selection to the water you'll be fishing.",
       items: [
         GearItem(
           title: "Smaller Creeks",
