@@ -106,6 +106,7 @@ IMAGE_COMPRESSION_QUALITY = 0.85
 // MARK: - Fish Detection ML Calibration
 // ──────────────────────────────────────────────
 
+SPECIES_DETECTION_THRESHOLD = 0.80
 FISH_DETECT_MIN_CONFIDENCE = 0.08
 FISH_BOX_SCALE_FACTOR = 0.59
 FISH_PIXELS_PER_INCH = 11.7

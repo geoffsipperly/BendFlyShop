@@ -79,18 +79,23 @@ final class CatchPhotoAnalyzer {
     }
 
     // 2. Species via ViT
-    let vitSpeciesGuess = runViT(on: image)
+    let vitResult = runViT(on: image)
 
     let speciesText: String?
-    if let idx = vitSpeciesGuess,
-       idx >= 0,
-       idx < speciesLabels.count {
-      let rawLabel = speciesLabels[idx]
+    if let vit = vitResult,
+       vit.index >= 0,
+       vit.index < speciesLabels.count,
+       vit.confidence >= AppEnvironment.shared.speciesDetectionThreshold {
+      let rawLabel = speciesLabels[vit.index]
       let prettyLabel = rawLabel.replacingOccurrences(of: "_", with: " ")
 
       speciesText = "Species (model): \(prettyLabel)"
+      AppLogging.log({ "ViT species: \(prettyLabel), confidence: \(vit.confidence)" }, level: .info, category: .ml)
     } else {
-      speciesText = "Model could not confidently classify this fish"
+      let conf = vitResult?.confidence ?? 0
+      let bestLabel = vitResult.flatMap { $0.index >= 0 && $0.index < speciesLabels.count ? speciesLabels[$0.index] : nil } ?? "none"
+      AppLogging.log({ "ViT species below threshold: best=\(bestLabel), confidence=\(conf) (min \(AppEnvironment.shared.speciesDetectionThreshold))" }, level: .debug, category: .ml)
+      speciesText = "Species not detected"
     }
 
     // 3. Sex via ViTFishSex (iOS 16+), fallback to Unknown on older OS
@@ -127,8 +132,8 @@ final class CatchPhotoAnalyzer {
 
   // MARK: - ViT inference (species)
 
-  /// Runs the ViT species model on a UIImage and returns the index of the maximum logit, if available.
-  private func runViT(on image: UIImage) -> Int? {
+  /// Runs the ViT species model on a UIImage and returns the best species index + softmax confidence.
+  private func runViT(on image: UIImage) -> (index: Int, confidence: Float)? {
     guard let inputArray = try? makeInputArray(from: image) else {
       return nil
     }
@@ -148,7 +153,34 @@ final class CatchPhotoAnalyzer {
       return nil
     }
 
-    return argmax(logits)
+    guard let bestIdx = argmax(logits) else { return nil }
+
+    // Compute softmax confidence for the winning class
+    let confidence = softmaxConfidence(logits, at: bestIdx)
+
+    return (index: bestIdx, confidence: confidence)
+  }
+
+  /// Computes the softmax probability for a specific index in a logits array.
+  private func softmaxConfidence(_ logits: MLMultiArray, at index: Int) -> Float {
+    // Find max for numerical stability
+    var maxVal: Float = -.greatestFiniteMagnitude
+    for i in 0 ..< logits.count {
+      maxVal = max(maxVal, logits[i].floatValue)
+    }
+
+    // Compute exp(logit - max) and sum
+    var sumExp: Float = 0.0
+    var targetExp: Float = 0.0
+    for i in 0 ..< logits.count {
+      let e = exp(logits[i].floatValue - maxVal)
+      sumExp += e
+      if i == index {
+        targetExp = e
+      }
+    }
+
+    return targetExp / sumExp
   }
 
   /// Returns the index of the largest value in the MLMultiArray (assumed 1-D or flattenable).

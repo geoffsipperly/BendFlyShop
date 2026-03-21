@@ -60,6 +60,7 @@ public final class AppEnvironment {
     public var overrideFishMaxLengthInches: Double?
     public var overrideFishEstimateLowFactor: Double?
     public var overrideFishEstimateHighFactor: Double?
+    public var overrideSpeciesDetectionThreshold: Double?
     public var overrideLodgeRivers: [String]?
     public var overrideBuzzCategoryId: String?
     public var overrideCommunityName: String?
@@ -444,6 +445,14 @@ public final class AppEnvironment {
         if let v = overrideFishEstimateHighFactor { return v }
         if let s = stringFromInfo("FISH_ESTIMATE_HIGH_FACTOR"), let v = Double(s) { return v }
         return 1.07
+    }
+
+    /// Minimum ViT softmax confidence (0.0–1.0) required to report a species.
+    /// Below this threshold the analyzer returns "Species not detected".
+    public var speciesDetectionThreshold: Float {
+        if let v = overrideSpeciesDetectionThreshold { return Float(v) }
+        if let s = stringFromInfo("SPECIES_DETECTION_THRESHOLD"), let v = Float(s) { return v }
+        return 0.80
     }
 
     // MARK: - The Buzz configuration

@@ -54,6 +54,8 @@
 	<string>$(FF_THE_BUZZ)</string>
 	<key>FISH_BOX_SCALE_FACTOR</key>
 	<string>$(FISH_BOX_SCALE_FACTOR)</string>
+	<key>SPECIES_DETECTION_THRESHOLD</key>
+	<string>$(SPECIES_DETECTION_THRESHOLD)</string>
 	<key>FISH_DETECT_MIN_CONFIDENCE</key>
 	<string>$(FISH_DETECT_MIN_CONFIDENCE)</string>
 	<key>FISH_ESTIMATE_HIGH_FACTOR</key>
