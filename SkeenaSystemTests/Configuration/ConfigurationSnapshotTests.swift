@@ -101,27 +101,27 @@ final class ConfigurationSnapshotTests: XCTestCase {
 
     // Test Nehalem River
     let nehalemBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
-    let nehalem = locator.riverName(near: nehalemBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    let nehalem = locator.riverName(near: nehalemBenchmarkLoc)
     if !nehalem.isEmpty { foundRivers.insert(nehalem) }
 
     // Test Wilson River
     let wilsonBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
-    let wilson = locator.riverName(near: wilsonBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    let wilson = locator.riverName(near: wilsonBenchmarkLoc)
     if !wilson.isEmpty { foundRivers.insert(wilson) }
 
     // Test Trask River
     let traskBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
-    let trask = locator.riverName(near: traskBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    let trask = locator.riverName(near: traskBenchmarkLoc)
     if !trask.isEmpty { foundRivers.insert(trask) }
 
     // Test Nestucca River
     let nestuccaBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
-    let nestucca = locator.riverName(near: nestuccaBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    let nestucca = locator.riverName(near: nestuccaBenchmarkLoc)
     if !nestucca.isEmpty { foundRivers.insert(nestucca) }
 
     // Test Kilchis River
     let kilchisBenchmarkLoc = CLLocation(latitude: 45.4562, longitude: -123.8426)
-    let kilchis = locator.riverName(near: kilchisBenchmarkLoc, forCommunity: "Bend Fly Shop")
+    let kilchis = locator.riverName(near: kilchisBenchmarkLoc)
     if !kilchis.isEmpty { foundRivers.insert(kilchis) }
 
     XCTAssertEqual(foundRivers, expectedRivers,

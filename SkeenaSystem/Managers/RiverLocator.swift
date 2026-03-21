@@ -76,41 +76,29 @@ final class RiverLocator {
 
   // MARK: - Public API
 
-  /// Returns true if we have at least one river for this community.
-    func hasRivers(forCommunity communityID: String) -> Bool {
-      let normalized = communityID.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-      return rivers.contains { $0.communityID.lowercased() == normalized }
-    }
-
-  /// Returns the best-matching river name for this location & community.
+  /// Returns the best-matching river name for this location.
   ///
   /// Semantics:
   /// - If `location` is nil → "" (no river)
-  /// - If no rivers are defined for this community → "" (no river)
-  /// - For each river in this community:
+  /// - For each river:
   ///   - Compute the minimum distance to ANY of that river's coordinates.
   ///   - If that minimum distance ≤ `maxDistanceKm`, the river is a candidate.
   /// - Return the name of the candidate river with the smallest distance.
   /// - If no river is within its `maxDistanceKm` → "" (no river)
-  func riverName(near location: CLLocation?, forCommunity communityID: String) -> String {
+  func riverName(near location: CLLocation?) -> String {
     // If we don't have a valid location, we can't resolve a river.
     guard let location else {
       return ""
     }
 
-    // Filter for this community.
-      let normalized = communityID.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-      let communityRivers = rivers.filter { $0.communityID.lowercased() == normalized }
-
-    guard !communityRivers.isEmpty else {
+    guard !rivers.isEmpty else {
       return ""
     }
 
     var bestRiver: RiverDefinition?
     var bestDistanceKm = Double.greatestFiniteMagnitude
 
-    // For each river in this community...
-    for river in communityRivers {
+    for river in rivers {
       guard !river.coordinates.isEmpty else { continue }
 
       // Find the closest of this river's points.

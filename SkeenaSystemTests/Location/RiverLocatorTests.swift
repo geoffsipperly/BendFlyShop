@@ -5,7 +5,7 @@ import CoreLocation
 /// Regression tests for RiverLocator.
 /// These tests verify the river lookup logic using known coordinates
 /// from the Oregon Coast / Tillamook region and ensure correct behavior for
-/// boundary conditions, unknown communities, and edge cases.
+/// boundary conditions and edge cases.
 @MainActor
 final class RiverLocatorTests: XCTestCase {
 
@@ -29,45 +29,6 @@ final class RiverLocatorTests: XCTestCase {
   // A location far from any Oregon Coast river (Portland, OR)
   private let portlandCoord = CLLocationCoordinate2D(latitude: 45.5152, longitude: -122.6784)
 
-  // MARK: - hasRivers Tests
-
-  func testHasRivers_bendFlyShop_returnsTrue() {
-    let locator = RiverLocator.shared
-    XCTAssertTrue(locator.hasRivers(forCommunity: "Bend Fly Shop"),
-                  "Bend Fly Shop should have rivers defined")
-  }
-
-  func testHasRivers_bendFlyShop_caseInsensitive() {
-    let locator = RiverLocator.shared
-
-    XCTAssertTrue(locator.hasRivers(forCommunity: "bend fly shop"),
-                  "Should match case-insensitively (lowercase)")
-    XCTAssertTrue(locator.hasRivers(forCommunity: "BEND FLY SHOP"),
-                  "Should match case-insensitively (uppercase)")
-    XCTAssertTrue(locator.hasRivers(forCommunity: "BeNd FlY sHoP"),
-                  "Should match case-insensitively (mixed)")
-  }
-
-  func testHasRivers_bendFlyShop_withWhitespace() {
-    let locator = RiverLocator.shared
-
-    XCTAssertTrue(locator.hasRivers(forCommunity: "  Bend Fly Shop  "),
-                  "Should trim leading/trailing whitespace")
-    XCTAssertTrue(locator.hasRivers(forCommunity: "\nBend Fly Shop\t"),
-                  "Should trim newlines and tabs")
-  }
-
-  func testHasRivers_unknownCommunity_returnsFalse() {
-    let locator = RiverLocator.shared
-
-    XCTAssertFalse(locator.hasRivers(forCommunity: "Unknown Community"),
-                   "Unknown community should return false")
-    XCTAssertFalse(locator.hasRivers(forCommunity: ""),
-                   "Empty string should return false")
-    XCTAssertFalse(locator.hasRivers(forCommunity: "Another Lodge"),
-                   "Non-existent community should return false")
-  }
-
   // MARK: - riverName Tests: Exact Coordinates
 
   func testRiverName_atNehalemRiver_returnsNehalem() {
@@ -75,7 +36,7 @@ final class RiverLocatorTests: XCTestCase {
     let location = CLLocation(latitude: nehalemRiverCoord.latitude,
                               longitude: nehalemRiverCoord.longitude)
 
-    let result = locator.riverName(near: location, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: location)
     XCTAssertEqual(result, "Nehalem",
                    "Should return short name 'Nehalem' when at exact Nehalem River coordinate")
   }
@@ -85,7 +46,7 @@ final class RiverLocatorTests: XCTestCase {
     let location = CLLocation(latitude: wilsonRiverCoord.latitude,
                               longitude: wilsonRiverCoord.longitude)
 
-    let result = locator.riverName(near: location, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: location)
     XCTAssertEqual(result, "Wilson",
                    "Should return short name 'Wilson' when at exact Wilson River coordinate")
   }
@@ -95,7 +56,7 @@ final class RiverLocatorTests: XCTestCase {
     let location = CLLocation(latitude: traskRiverCoord.latitude,
                               longitude: traskRiverCoord.longitude)
 
-    let result = locator.riverName(near: location, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: location)
     XCTAssertEqual(result, "Trask",
                    "Should return short name 'Trask' when at exact Trask River coordinate")
   }
@@ -105,7 +66,7 @@ final class RiverLocatorTests: XCTestCase {
     let location = CLLocation(latitude: nestuccaRiverCoord.latitude,
                               longitude: nestuccaRiverCoord.longitude)
 
-    let result = locator.riverName(near: location, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: location)
     XCTAssertEqual(result, "Nestucca",
                    "Should return short name 'Nestucca' when at exact Nestucca River coordinate")
   }
@@ -115,7 +76,7 @@ final class RiverLocatorTests: XCTestCase {
     let location = CLLocation(latitude: kilchisRiverCoord.latitude,
                               longitude: kilchisRiverCoord.longitude)
 
-    let result = locator.riverName(near: location, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: location)
     XCTAssertEqual(result, "Kilchis",
                    "Should return short name 'Kilchis' when at exact Kilchis River coordinate")
   }
@@ -128,7 +89,7 @@ final class RiverLocatorTests: XCTestCase {
     let nearbyLocation = CLLocation(latitude: nehalemRiverCoord.latitude + 0.009,
                                     longitude: nehalemRiverCoord.longitude)
 
-    let result = locator.riverName(near: nearbyLocation, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: nearbyLocation)
     XCTAssertEqual(result, "Nehalem",
                    "Should return short name 'Nehalem' when within 10km of Nehalem River")
   }
@@ -139,7 +100,7 @@ final class RiverLocatorTests: XCTestCase {
     let nearbyLocation = CLLocation(latitude: wilsonRiverCoord.latitude + 0.045,
                                     longitude: wilsonRiverCoord.longitude)
 
-    let result = locator.riverName(near: nearbyLocation, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: nearbyLocation)
     XCTAssertEqual(result, "Wilson",
                    "Should return short name 'Wilson' when ~5km away (within 10km threshold)")
   }
@@ -151,7 +112,7 @@ final class RiverLocatorTests: XCTestCase {
     let portlandLocation = CLLocation(latitude: portlandCoord.latitude,
                                       longitude: portlandCoord.longitude)
 
-    let result = locator.riverName(near: portlandLocation, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: portlandLocation)
     XCTAssertEqual(result, "",
                    "Should return empty string when far from all rivers (Portland)")
   }
@@ -162,7 +123,7 @@ final class RiverLocatorTests: XCTestCase {
     let farLocation = CLLocation(latitude: nehalemRiverCoord.latitude + 0.1,
                                  longitude: nehalemRiverCoord.longitude)
 
-    let result = locator.riverName(near: farLocation, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: farLocation)
     // This should either be empty or return a different river if one is within range
     // The key is it shouldn't return Nehalem if >10km away
     if result == "Nehalem" {
@@ -179,47 +140,9 @@ final class RiverLocatorTests: XCTestCase {
 
   func testRiverName_nilLocation_returnsEmptyString() {
     let locator = RiverLocator.shared
-    let result = locator.riverName(near: nil, forCommunity: "Bend Fly Shop")
+    let result = locator.riverName(near: nil)
     XCTAssertEqual(result, "",
                    "Should return empty string when location is nil")
-  }
-
-  // MARK: - riverName Tests: Unknown Community
-
-  func testRiverName_unknownCommunity_returnsEmptyString() {
-    let locator = RiverLocator.shared
-    let location = CLLocation(latitude: nehalemRiverCoord.latitude,
-                              longitude: nehalemRiverCoord.longitude)
-
-    let result = locator.riverName(near: location, forCommunity: "Unknown Community")
-    XCTAssertEqual(result, "",
-                   "Should return empty string for unknown community even at valid river location")
-  }
-
-  func testRiverName_emptyCommunity_returnsEmptyString() {
-    let locator = RiverLocator.shared
-    let location = CLLocation(latitude: nehalemRiverCoord.latitude,
-                              longitude: nehalemRiverCoord.longitude)
-
-    let result = locator.riverName(near: location, forCommunity: "")
-    XCTAssertEqual(result, "",
-                   "Should return empty string for empty community string")
-  }
-
-  // MARK: - riverName Tests: Case Insensitive Community
-
-  func testRiverName_caseInsensitiveCommunity() {
-    let locator = RiverLocator.shared
-    let location = CLLocation(latitude: nehalemRiverCoord.latitude,
-                              longitude: nehalemRiverCoord.longitude)
-
-    let resultLower = locator.riverName(near: location, forCommunity: "bend fly shop")
-    let resultUpper = locator.riverName(near: location, forCommunity: "BEND FLY SHOP")
-    let resultMixed = locator.riverName(near: location, forCommunity: "Bend fly shop")
-
-    XCTAssertEqual(resultLower, "Nehalem", "Should work with lowercase community")
-    XCTAssertEqual(resultUpper, "Nehalem", "Should work with uppercase community")
-    XCTAssertEqual(resultMixed, "Nehalem", "Should work with mixed case community")
   }
 
   // MARK: - riverName Tests: Closest River Selection
@@ -234,11 +157,11 @@ final class RiverLocatorTests: XCTestCase {
 
     // Create a point closer to Wilson
     let closerToWilson = CLLocation(latitude: 45.4700, longitude: -123.7330)
-    let resultWilson = locator.riverName(near: closerToWilson, forCommunity: "Bend Fly Shop")
+    let resultWilson = locator.riverName(near: closerToWilson)
 
     // Create a point closer to Trask
     let closerToTrask = CLLocation(latitude: 45.4130, longitude: -123.7210)
-    let resultTrask = locator.riverName(near: closerToTrask, forCommunity: "Bend Fly Shop")
+    let resultTrask = locator.riverName(near: closerToTrask)
 
     // Both should return the closest river (or empty if beyond 10km from all)
     // The key assertion is they shouldn't return the same river
@@ -265,7 +188,7 @@ final class RiverLocatorTests: XCTestCase {
 
     for (expectedName, coord) in expectedRivers {
       let location = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
-      let result = locator.riverName(near: location, forCommunity: "Bend Fly Shop")
+      let result = locator.riverName(near: location)
       XCTAssertEqual(result, expectedName,
                      "River \(expectedName) should be found at its first coordinate")
     }
@@ -335,7 +258,7 @@ final class RiverLocatorTests: XCTestCase {
     ]
     for (coord, expected) in coords {
       let loc = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
-      let result = locator.riverName(near: loc, forCommunity: "Bend Fly Shop")
+      let result = locator.riverName(near: loc)
       XCTAssertEqual(result, expected,
                      "riverName() should return '\(expected)', not a full name with suffix")
       XCTAssertFalse(result.contains("Creek"), "Short name should not contain 'Creek'")
@@ -352,7 +275,7 @@ final class RiverLocatorTests: XCTestCase {
 
     measure {
       for _ in 0..<1000 {
-        _ = locator.riverName(near: location, forCommunity: "Bend Fly Shop")
+        _ = locator.riverName(near: location)
       }
     }
   }
